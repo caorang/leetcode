@@ -9,92 +9,93 @@ import java.util.Map;
  */
 public class LruCache<K, V> {
 
-    static class Node<K, V> {
+    static class LinkedNode<K, V> {
         K key;
         V value;
-        Node prev;
-        Node next;
+        LinkedNode prev;
+        LinkedNode next;
 
-        public Node(K key, V value) {
+        public LinkedNode() {
+        }
+
+        public LinkedNode(K key, V value) {
             this.key = key;
             this.value = value;
         }
     }
 
     private int capacity;
-    private Node head;
-    private Map<K, Node> map = new HashMap<>();
+    private int size;
+    private LinkedNode head;
+    private LinkedNode tail;
+    private Map<K, LinkedNode> cache;
 
     public LruCache(int capacity) {
+        cache = new HashMap<K, LinkedNode>();
         this.capacity = capacity;
+        this.size = 0;
+        head = new LinkedNode();
+        tail = new LinkedNode();
+        head.next = tail;
+        tail.prev = head;
     }
 
     public V get(K key) {
-        if (map.containsKey(key)) {
-            Node node = map.get(key);
-            remove(node);
-            add(node);
+        if (cache.containsKey(key)) {
+            LinkedNode node = cache.get(key);
+            moveToHead(node);
             return (V) node.value;
         }
         return null;
     }
 
     public void put(K key, V value) {
-        if (map.containsKey(key)) {
-            Node node = map.get(key);
+        if (cache.containsKey(key)) {
+            LinkedNode node = cache.get(key);
             node.value = value;
-            remove(node);
-            add(node);
+            moveToHead(node);
         } else {
-            if (map.size() >= capacity) {
-                Node node = tail();
-                remove(node);
-                map.remove(node.key);
+            LinkedNode node = new LinkedNode(key, value);
+            cache.put(key, node);
+            addToHead(node);
+            ++size;
+            if (size > capacity) {
+                LinkedNode res = tail.prev;
+                removeNode(res);
+                cache.remove(res.key);
+                --size;
             }
-            Node node = new Node(key, value);
-            add(node);
-            map.put(key, node);
         }
     }
 
-    private Node tail() {
-        return head.prev;
+    private void addToHead(LinkedNode node) {
+        LinkedNode temp = head.next;
+        head.next = node;
+        node.prev = head;
+        node.next = temp;
+        temp.prev = node;
     }
 
-    private void add(Node node) {
-        if (head == null) {
-            head = node;
-            node.prev = head;
-            node.next = null;
-        } else {
-            node.next = head;
-            node.prev = head.prev;
-            head.prev = node;
-            head = node;
-        }
+    private void removeNode(LinkedNode res) {
+        LinkedNode prev = res.prev;
+        LinkedNode next = res.next;
+        prev.next = next;
+        next.prev = prev;
     }
 
-    private void remove(Node node) {
-        if (head == null) {
-            return;
-        }
-        Node prev = node.prev;
-        Node next = node.next;
-        if (prev != null) {
-            prev.next = next;
-        }
-        if (next != null) {
-            next.prev = prev;
-        }
+    private void moveToHead(LinkedNode node) {
+        removeNode(node);
+        addToHead(node);
     }
+
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Node node = head;
-        while (node != null) {
-            sb.append(node.value).append(",");
-            node = node.next;
+        LinkedNode LinkedNode = head;
+        while (LinkedNode != null) {
+            sb.append(LinkedNode.value).append(",");
+            LinkedNode = LinkedNode.next;
         }
         return sb.toString();
     }

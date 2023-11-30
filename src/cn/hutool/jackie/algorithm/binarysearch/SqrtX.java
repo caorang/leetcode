@@ -3,6 +3,11 @@ package cn.hutool.jackie.algorithm.binarysearch;
 public class SqrtX {
 
 	public static void main(String[] args) {
+		System.out.println(new SqrtX().mySqrt(8));
+		System.out.println(new SqrtX().mySqrt(9));
+		System.out.println(new SqrtX().mySqrt(10));
+		System.out.println(new SqrtX().mySqrt(16));
+		System.out.println(new SqrtX().mySqrt(17));
 		System.out.println(new SqrtX().mySqrt(2147483647));
 	}
 

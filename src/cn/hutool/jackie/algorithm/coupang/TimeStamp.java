@@ -10,6 +10,15 @@ import java.util.Random;
  */
 public class TimeStamp {
 
+    /**
+     * from -12 to 12
+     */
+    private int zone;
+
+    public TimeStamp(int zone) {
+        this.zone = zone;
+    }
+
     static class Pair {
         int value;
         long left;
@@ -103,7 +112,7 @@ public class TimeStamp {
 
     private Pair getYear(long timestamp) {
         // 东八区调整
-        timestamp += 8 * 3600;
+        timestamp += this.zone * 3600;
         long t = 0;
         for (int year = 1970; year <= 9999; year++) {
             long temp = t;
@@ -137,7 +146,7 @@ public class TimeStamp {
     }
 
     private static void case1() {
-        TimeStamp ts = new TimeStamp();
+        TimeStamp ts = new TimeStamp(8);
 
         long t = 936842400L;
         System.out.print(ts.timeStamp2Date(t) + " = ");
@@ -184,7 +193,7 @@ public class TimeStamp {
     }
 
     private static void case2() {
-        TimeStamp ts = new TimeStamp();
+        TimeStamp ts = new TimeStamp(8);
         long t = 515524332L;
         System.out.print(ts.timeStamp2Date(t) + " = ");
         System.out.println(ts.format(t));

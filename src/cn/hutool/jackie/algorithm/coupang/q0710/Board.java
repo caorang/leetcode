@@ -4,8 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-import Q7_10_Minesweeper.Game.GameState;
-
 public class Board {
     private int nRows;
     private int nColumns;
@@ -158,18 +156,18 @@ public class Board {
     public UserPlayResult playFlip(UserPlay play) {
         Cell cell = getCellAtLocation(play);
         if (cell == null) {
-            return new UserPlayResult(false, GameState.RUNNING);
+            return new UserPlayResult(false, Game.GameState.RUNNING);
         }
 
         if (play.isGuess()) {
             boolean guessResult = cell.toggleGuess();
-            return new UserPlayResult(guessResult, GameState.RUNNING);
+            return new UserPlayResult(guessResult, Game.GameState.RUNNING);
         }
 
         boolean result = flipCell(cell);
 
         if (cell.isBomb()) {
-            return new UserPlayResult(result, GameState.LOST);
+            return new UserPlayResult(result, Game.GameState.LOST);
         }
 
         if (cell.isBlank()) {
@@ -177,10 +175,10 @@ public class Board {
         }
 
         if (numUnexposedRemaining == 0) {
-            return new UserPlayResult(result, GameState.WON);
+            return new UserPlayResult(result, Game.GameState.WON);
         }
 
-        return new UserPlayResult(result, GameState.RUNNING);
+        return new UserPlayResult(result, Game.GameState.RUNNING);
     }
 
     public Cell getCellAtLocation(UserPlay play) {

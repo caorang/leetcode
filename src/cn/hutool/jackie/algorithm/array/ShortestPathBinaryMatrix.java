@@ -5,11 +5,11 @@ package cn.hutool.jackie.algorithm.array;
  */
 public class ShortestPathBinaryMatrix {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	}
+    }
 
-	public int shortestPathBinaryMatrix(int[][] grid) {
-		return 0;
-	}
+    public int shortestPathBinaryMatrix(int[][] grid) {
+        return 0;
+    }
 }

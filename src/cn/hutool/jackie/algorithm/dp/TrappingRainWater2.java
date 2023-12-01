@@ -8,6 +8,8 @@ import java.util.PriorityQueue;
  */
 public class TrappingRainWater2 {
 
+    int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
     public static void main(String[] args) {
         int[][] heightMap = {{3, 3, 3, 3, 3}, {3, 2, 2, 2, 3}, {3, 2, 1, 2, 3}, {3, 2, 2, 2, 3}, {3, 3, 3, 3, 3}};
         System.out.println(new TrappingRainWater2().trapRainWater(heightMap));
@@ -15,8 +17,6 @@ public class TrappingRainWater2 {
         heightMap = new int[][] {{1, 4, 3, 1, 3, 2}, {3, 2, 1, 3, 2, 4}, {2, 3, 3, 2, 3, 1}};
         System.out.println(new TrappingRainWater2().trapRainWater(heightMap));
     }
-
-    int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
     public int trapRainWater(int[][] heightMap) {
         // 使用堆解决，保存<x,y,h>，表示位置和高度

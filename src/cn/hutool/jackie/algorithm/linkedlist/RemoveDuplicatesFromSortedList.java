@@ -27,55 +27,55 @@ package cn.hutool.jackie.algorithm.linkedlist;
  */
 public class RemoveDuplicatesFromSortedList {
 
-	public static class ListNode {
-		int val;
-		ListNode next;
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1, new ListNode(2, new ListNode(2, new ListNode(3, new ListNode(3)))));
+        ListNode result = new RemoveDuplicatesFromSortedList().deleteDuplicates(head);
+        System.out.println(result.toString());
+    }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode temp = head;
+        while (head != null && head.next != null) {
+            ListNode cur = head;
+            while (cur != null && cur.next != null && cur.val == cur.next.val) {
+                cur = cur.next;
+            }
+            head.next = cur.next;
+            if (cur.next != null) {
+                head = head.next;
+            }
+        }
+        return temp;
+    }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
+    public static class ListNode {
+        int val;
+        ListNode next;
 
-		@Override
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-			ListNode cur = this;
-			while (cur != null) {
-				sb.append(cur.val);
-				if (cur.next != null) {
-					sb.append(" → ");
-				}
-				cur = cur.next;
-			}
-			return sb.toString();
-		}
-	}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-	public static void main(String[] args) {
-		ListNode head = new ListNode(1, new ListNode(2, new ListNode(2, new ListNode(3, new ListNode(3)))));
-		ListNode result = new RemoveDuplicatesFromSortedList().deleteDuplicates(head);
-		System.out.println(result.toString());
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
 
-	public ListNode deleteDuplicates(ListNode head) {
-		if (head == null) {
-			return null;
-		}
-		ListNode temp = head;
-		while (head != null && head.next != null) {
-			ListNode cur = head;
-			while (cur != null && cur.next != null && cur.val == cur.next.val) {
-				cur = cur.next;
-			}
-			head.next = cur.next;
-			if (cur.next != null) {
-				head = head.next;
-			}
-		}
-		return temp;
-	}
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            ListNode cur = this;
+            while (cur != null) {
+                sb.append(cur.val);
+                if (cur.next != null) {
+                    sb.append(" → ");
+                }
+                cur = cur.next;
+            }
+            return sb.toString();
+        }
+    }
 }

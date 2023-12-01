@@ -33,41 +33,41 @@ package cn.hutool.jackie.algorithm.tree;
  */
 public class SameTree {
 
-	public static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
+    public static void main(String[] args) {
+        TreeNode p = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(5));
+        TreeNode q = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(5));
+        System.out.println(new SameTree().isSameTree(p, q));
+    }
 
-		TreeNode() {
-		}
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p != null && q == null) {
+            return false;
+        }
+        if (p == null && q != null) {
+            return false;
+        }
+        return p.val == q.val && isSameTree(p.right, q.right) && isSameTree(p.left, q.left);
+    }
 
-		TreeNode(int val) {
-			this.val = val;
-		}
+    public static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-	}
+        TreeNode() {
+        }
 
-	public static void main(String[] args) {
-		TreeNode p = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(5));
-		TreeNode q = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(5));
-		System.out.println(new SameTree().isSameTree(p, q));
-	}
+        TreeNode(int val) {
+            this.val = val;
+        }
 
-	public boolean isSameTree(TreeNode p, TreeNode q) {
-		if (p == null && q == null) {
-			return true;
-		}
-		if (p != null && q == null) {
-			return false;
-		}
-		if (p == null && q != null) {
-			return false;
-		}
-		return p.val == q.val && isSameTree(p.right, q.right) && isSameTree(p.left, q.left);
-	}
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

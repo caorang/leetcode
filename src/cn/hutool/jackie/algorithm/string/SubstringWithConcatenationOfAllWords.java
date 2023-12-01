@@ -53,101 +53,101 @@ import java.util.Set;
  */
 public class SubstringWithConcatenationOfAllWords {
 
-	public static void main(String[] args) {
-		SubstringWithConcatenationOfAllWords substringWithConcatenationOfAllWords = new SubstringWithConcatenationOfAllWords();
-		System.out.println(substringWithConcatenationOfAllWords.findSubstring("barfoothefoobarman", new String[] {"foo", "bar"}));
-		System.out.println(substringWithConcatenationOfAllWords.findSubstring("wordgoodgoodgoodbestword",
-				new String[] {"word", "good", "best", "word"}));
+    public static void main(String[] args) {
+        SubstringWithConcatenationOfAllWords substringWithConcatenationOfAllWords = new SubstringWithConcatenationOfAllWords();
+        System.out.println(substringWithConcatenationOfAllWords.findSubstring("barfoothefoobarman", new String[] {"foo", "bar"}));
+        System.out.println(substringWithConcatenationOfAllWords.findSubstring("wordgoodgoodgoodbestword",
+                new String[] {"word", "good", "best", "word"}));
 
-		String s =
-				"pjzkrkevzztxductzzxmxsvwjkxpvukmfjywwetvfnujhweiybwvvsrfequzkhossmootkmyxgjgfordrpapjuunmqnxxdrqrfgkrsjqbszgiqlcfnrpjlcwdrvbumtotzylshdvccdmsqoadfrpsvnwpizlwszrtyclhgilklydbmfhuywotjmktnwrfvizvnmfvvqfiokkdprznnnjycttprkxpuykhmpchiksyucbmtabiqkisgbhxngmhezrrqvayfsxauampdpxtafniiwfvdufhtwajrbkxtjzqjnfocdhekumttuqwovfjrgulhekcpjszyynadxhnttgmnxkduqmmyhzfnjhducesctufqbumxbamalqudeibljgbspeotkgvddcwgxidaiqcvgwykhbysjzlzfbupkqunuqtraxrlptivshhbihtsigtpipguhbhctcvubnhqipncyxfjebdnjyetnlnvmuxhzsdahkrscewabejifmxombiamxvauuitoltyymsarqcuuoezcbqpdaprxmsrickwpgwpsoplhugbikbkotzrtqkscekkgwjycfnvwfgdzogjzjvpcvixnsqsxacfwndzvrwrycwxrcismdhqapoojegggkocyrdtkzmiekhxoppctytvphjynrhtcvxcobxbcjjivtfjiwmduhzjokkbctweqtigwfhzorjlkpuuliaipbtfldinyetoybvugevwvhhhweejogrghllsouipabfafcxnhukcbtmxzshoyyufjhzadhrelweszbfgwpkzlwxkogyogutscvuhcllphshivnoteztpxsaoaacgxyaztuixhunrowzljqfqrahosheukhahhbiaxqzfmmwcjxountkevsvpbzjnilwpoermxrtlfroqoclexxisrdhvfsindffslyekrzwzqkpeocilatftymodgztjgybtyheqgcpwogdcjlnlesefgvimwbxcbzvaibspdjnrpqtyeilkcspknyylbwndvkffmzuriilxagyerjptbgeqgebiaqnvdubrtxibhvakcyotkfonmseszhczapxdlauexehhaireihxsplgdgmxfvaevrbadbwjbdrkfbbjjkgcztkcbwagtcnrtqryuqixtzhaakjlurnumzyovawrcjiwabuwretmdamfkxrgqgcdgbrdbnugzecbgyxxdqmisaqcyjkqrntxqmdrczxbebemcblftxplafnyoxqimkhcykwamvdsxjezkpgdpvopddptdfbprjustquhlazkjfluxrzopqdstulybnqvyknrchbphcarknnhhovweaqawdyxsqsqahkepluypwrzjegqtdoxfgzdkydeoxvrfhxusrujnmjzqrrlxglcmkiykldbiasnhrjbjekystzilrwkzhontwmehrfsrzfaqrbbxncphbzuuxeteshyrveamjsfiaharkcqxefghgceeixkdgkuboupxnwhnfigpkwnqdvzlydpidcljmflbccarbiegsmweklwngvygbqpescpeichmfidgsjmkvkofvkuehsmkkbocgejoiqcnafvuokelwuqsgkyoekaroptuvekfvmtxtqshcwsztkrzwrpabqrrhnlerxjojemcxel";
-		String[] words =
-				new String[] {"dhvf", "sind", "ffsl", "yekr", "zwzq", "kpeo", "cila", "tfty", "modg", "ztjg", "ybty", "heqg", "cpwo",
-						"gdcj", "lnle", "sefg", "vimw", "bxcb"};
-		System.out.println(substringWithConcatenationOfAllWords.findSubstring(s, words));
-	}
+        String s =
+                "pjzkrkevzztxductzzxmxsvwjkxpvukmfjywwetvfnujhweiybwvvsrfequzkhossmootkmyxgjgfordrpapjuunmqnxxdrqrfgkrsjqbszgiqlcfnrpjlcwdrvbumtotzylshdvccdmsqoadfrpsvnwpizlwszrtyclhgilklydbmfhuywotjmktnwrfvizvnmfvvqfiokkdprznnnjycttprkxpuykhmpchiksyucbmtabiqkisgbhxngmhezrrqvayfsxauampdpxtafniiwfvdufhtwajrbkxtjzqjnfocdhekumttuqwovfjrgulhekcpjszyynadxhnttgmnxkduqmmyhzfnjhducesctufqbumxbamalqudeibljgbspeotkgvddcwgxidaiqcvgwykhbysjzlzfbupkqunuqtraxrlptivshhbihtsigtpipguhbhctcvubnhqipncyxfjebdnjyetnlnvmuxhzsdahkrscewabejifmxombiamxvauuitoltyymsarqcuuoezcbqpdaprxmsrickwpgwpsoplhugbikbkotzrtqkscekkgwjycfnvwfgdzogjzjvpcvixnsqsxacfwndzvrwrycwxrcismdhqapoojegggkocyrdtkzmiekhxoppctytvphjynrhtcvxcobxbcjjivtfjiwmduhzjokkbctweqtigwfhzorjlkpuuliaipbtfldinyetoybvugevwvhhhweejogrghllsouipabfafcxnhukcbtmxzshoyyufjhzadhrelweszbfgwpkzlwxkogyogutscvuhcllphshivnoteztpxsaoaacgxyaztuixhunrowzljqfqrahosheukhahhbiaxqzfmmwcjxountkevsvpbzjnilwpoermxrtlfroqoclexxisrdhvfsindffslyekrzwzqkpeocilatftymodgztjgybtyheqgcpwogdcjlnlesefgvimwbxcbzvaibspdjnrpqtyeilkcspknyylbwndvkffmzuriilxagyerjptbgeqgebiaqnvdubrtxibhvakcyotkfonmseszhczapxdlauexehhaireihxsplgdgmxfvaevrbadbwjbdrkfbbjjkgcztkcbwagtcnrtqryuqixtzhaakjlurnumzyovawrcjiwabuwretmdamfkxrgqgcdgbrdbnugzecbgyxxdqmisaqcyjkqrntxqmdrczxbebemcblftxplafnyoxqimkhcykwamvdsxjezkpgdpvopddptdfbprjustquhlazkjfluxrzopqdstulybnqvyknrchbphcarknnhhovweaqawdyxsqsqahkepluypwrzjegqtdoxfgzdkydeoxvrfhxusrujnmjzqrrlxglcmkiykldbiasnhrjbjekystzilrwkzhontwmehrfsrzfaqrbbxncphbzuuxeteshyrveamjsfiaharkcqxefghgceeixkdgkuboupxnwhnfigpkwnqdvzlydpidcljmflbccarbiegsmweklwngvygbqpescpeichmfidgsjmkvkofvkuehsmkkbocgejoiqcnafvuokelwuqsgkyoekaroptuvekfvmtxtqshcwsztkrzwrpabqrrhnlerxjojemcxel";
+        String[] words =
+                new String[] {"dhvf", "sind", "ffsl", "yekr", "zwzq", "kpeo", "cila", "tfty", "modg", "ztjg", "ybty", "heqg", "cpwo",
+                        "gdcj", "lnle", "sefg", "vimw", "bxcb"};
+        System.out.println(substringWithConcatenationOfAllWords.findSubstring(s, words));
+    }
 
-	public List<Integer> findSubstring(String s, String[] words) {
-		if (s == null || words == null || words.length == 0) {
-			return new ArrayList<>();
-		}
-		int length = words[0].length();
-		Map<String, Integer> dictionary = new HashMap<>();
-		for (int i = 0; i < words.length; i++) {
-			if (dictionary.containsKey(words[i])) {
-				dictionary.put(words[i], dictionary.get(words[i]) + 1);
-			} else {
-				dictionary.put(words[i], 1);
-			}
-		}
-		List<Integer> result = new ArrayList<>();
-		for (int i = 0; i <= s.length() - length * words.length; i++) {
-			String subString = s.substring(i, i + words[0].length() * words.length);
-			Map<String, Integer> dictionary2 = new HashMap<>();
-			dictionary2.putAll(dictionary);
-			if (isSubStringMatched(dictionary2, subString, length)) {
-				result.add(i);
-			}
-		}
-		return result;
-	}
+    public List<Integer> findSubstring(String s, String[] words) {
+        if (s == null || words == null || words.length == 0) {
+            return new ArrayList<>();
+        }
+        int length = words[0].length();
+        Map<String, Integer> dictionary = new HashMap<>();
+        for (int i = 0; i < words.length; i++) {
+            if (dictionary.containsKey(words[i])) {
+                dictionary.put(words[i], dictionary.get(words[i]) + 1);
+            } else {
+                dictionary.put(words[i], 1);
+            }
+        }
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i <= s.length() - length * words.length; i++) {
+            String subString = s.substring(i, i + words[0].length() * words.length);
+            Map<String, Integer> dictionary2 = new HashMap<>();
+            dictionary2.putAll(dictionary);
+            if (isSubStringMatched(dictionary2, subString, length)) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
 
-	private boolean isSubStringMatched(Map<String, Integer> dictionary, String string, int length) {
-		for (int i = 0; i <= string.length() - length; ) {
-			String cut = string.substring(i, i + length);
-			if (dictionary.containsKey(cut)) {
-				dictionary.put(cut, dictionary.get(cut) - 1);
-			} else {
-				return false;
-			}
-			i += length;
-		}
-		boolean flag = true;
-		for (String key : dictionary.keySet()) {
-			if (dictionary.get(key) != 0) {
-				flag = false;
-				break;
-			}
-		}
-		return flag;
-	}
+    private boolean isSubStringMatched(Map<String, Integer> dictionary, String string, int length) {
+        for (int i = 0; i <= string.length() - length; ) {
+            String cut = string.substring(i, i + length);
+            if (dictionary.containsKey(cut)) {
+                dictionary.put(cut, dictionary.get(cut) - 1);
+            } else {
+                return false;
+            }
+            i += length;
+        }
+        boolean flag = true;
+        for (String key : dictionary.keySet()) {
+            if (dictionary.get(key) != 0) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
 
-	public List<Integer> findSubstringWithDictionary(String s, String[] words) {
-		if (s == null || words == null || words.length == 0) {
-			return new ArrayList<>();
-		}
-		List<Integer> result = new ArrayList<>();
-		Set<String> dictionary = init(words);
-		for (int i = 0; i <= s.length() - words[0].length() * words.length; i++) {
-			String subString = s.substring(i, i + words[0].length() * words.length);
-			if (dictionary.contains(subString)) {
-				result.add(i);
-			}
-		}
-		return result;
-	}
+    public List<Integer> findSubstringWithDictionary(String s, String[] words) {
+        if (s == null || words == null || words.length == 0) {
+            return new ArrayList<>();
+        }
+        List<Integer> result = new ArrayList<>();
+        Set<String> dictionary = init(words);
+        for (int i = 0; i <= s.length() - words[0].length() * words.length; i++) {
+            String subString = s.substring(i, i + words[0].length() * words.length);
+            if (dictionary.contains(subString)) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
 
-	private Set<String> init(String[] words) {
-		Set<String> dictionary = new HashSet<>();
-		backtrace(dictionary, new HashSet<>(), new StringBuilder(), words, words[0].length());
-		return dictionary;
-	}
+    private Set<String> init(String[] words) {
+        Set<String> dictionary = new HashSet<>();
+        backtrace(dictionary, new HashSet<>(), new StringBuilder(), words, words[0].length());
+        return dictionary;
+    }
 
-	private void backtrace(Set<String> dictionary, Set<String> set, StringBuilder sb, String[] words, int wordLength) {
-		if (sb.length() >= words.length * wordLength) {
-			dictionary.add(sb.toString());
-			return;
-		}
-		for (int i = 0; i < words.length; i++) {
-			String word = words[i];
-			if (set.contains(i + "-" + word)) {
-				continue;
-			}
-			sb.append(word);
-			set.add(i + "-" + word);
-			backtrace(dictionary, set, sb, words, wordLength);
-			sb.delete(sb.length() - wordLength, sb.length());
-			set.remove(i + "-" + word);
-		}
-	}
+    private void backtrace(Set<String> dictionary, Set<String> set, StringBuilder sb, String[] words, int wordLength) {
+        if (sb.length() >= words.length * wordLength) {
+            dictionary.add(sb.toString());
+            return;
+        }
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (set.contains(i + "-" + word)) {
+                continue;
+            }
+            sb.append(word);
+            set.add(i + "-" + word);
+            backtrace(dictionary, set, sb, words, wordLength);
+            sb.delete(sb.length() - wordLength, sb.length());
+            set.remove(i + "-" + word);
+        }
+    }
 }

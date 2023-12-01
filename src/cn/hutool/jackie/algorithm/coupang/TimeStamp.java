@@ -10,6 +10,7 @@ import java.util.Random;
  */
 public class TimeStamp {
 
+    int[] monthDays = new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     /**
      * from -12 to 12
      */
@@ -19,22 +20,67 @@ public class TimeStamp {
         this.zone = zone;
     }
 
-    static class Pair {
-        int value;
-        long left;
+    public static void main(String[] args) {
+        case1();
+    }
 
-        public Pair(int value, long left) {
-            this.value = value;
-            this.left = left;
-        }
+    private static void case1() {
+        TimeStamp ts = new TimeStamp(8);
 
-        @Override
-        public String toString() {
-            return "value=" + value + ", left=" + left;
+        long t = 936842400L;
+        System.out.print(ts.timeStamp2Date(t) + " = ");
+        System.out.println(ts.format(t));
+        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
+        System.out.println(ts.format(t + 1));
+        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
+        System.out.println(ts.format(t - 1));
+
+        t = 976550400L;
+        System.out.print(ts.timeStamp2Date(t) + " = ");
+        System.out.println(ts.format(t));
+        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
+        System.out.println(ts.format(t + 1));
+        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
+        System.out.println(ts.format(t - 1));
+
+        t = 1325347200L;
+        System.out.print(ts.timeStamp2Date(t) + " = ");
+        System.out.println(ts.format(t));
+        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
+        System.out.println(ts.format(t + 1));
+        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
+        System.out.println(ts.format(t - 1));
+
+        t = 1701314348L;
+        System.out.print(ts.timeStamp2Date(t) + " = ");
+        System.out.println(ts.format(t));
+        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
+        System.out.println(ts.format(t + 1));
+        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
+        System.out.println(ts.format(t - 1));
+
+        Random random = new Random();
+        for (long time = 0; time <= System.currentTimeMillis() / 1000; ) {
+            String s1 = ts.timeStamp2Date(time);
+            String s2 = ts.format(time);
+            System.out.println(s1.equals(s2) + ": " + time + ", " + s1 + ", " + s2);
+            time = time + random.nextInt(10000000);
+            if (!s1.equals(s2)) {
+                break;
+            }
         }
     }
 
-    int[] monthDays = new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static void case2() {
+        TimeStamp ts = new TimeStamp(8);
+        long t = 515524332L;
+        System.out.print(ts.timeStamp2Date(t) + " = ");
+        System.out.println(ts.format(t));
+
+        t = 515527332L;
+        System.out.print(ts.timeStamp2Date(t) + " = ");
+        System.out.println(ts.format(t));
+    }
 
     /**
      * timestamp → [yyyy-MM-dd HH:mm:ss]
@@ -141,65 +187,18 @@ public class TimeStamp {
         return dtf.format(instant.atZone(ZoneId.of("GMT+8")));
     }
 
-    public static void main(String[] args) {
-        case1();
-    }
+    static class Pair {
+        int value;
+        long left;
 
-    private static void case1() {
-        TimeStamp ts = new TimeStamp(8);
-
-        long t = 936842400L;
-        System.out.print(ts.timeStamp2Date(t) + " = ");
-        System.out.println(ts.format(t));
-        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
-        System.out.println(ts.format(t + 1));
-        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
-        System.out.println(ts.format(t - 1));
-
-        t = 976550400L;
-        System.out.print(ts.timeStamp2Date(t) + " = ");
-        System.out.println(ts.format(t));
-        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
-        System.out.println(ts.format(t + 1));
-        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
-        System.out.println(ts.format(t - 1));
-
-        t = 1325347200L;
-        System.out.print(ts.timeStamp2Date(t) + " = ");
-        System.out.println(ts.format(t));
-        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
-        System.out.println(ts.format(t + 1));
-        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
-        System.out.println(ts.format(t - 1));
-
-        t = 1701314348L;
-        System.out.print(ts.timeStamp2Date(t) + " = ");
-        System.out.println(ts.format(t));
-        System.out.print(ts.timeStamp2Date(t + 1) + " = ");
-        System.out.println(ts.format(t + 1));
-        System.out.print(ts.timeStamp2Date(t - 1) + " = ");
-        System.out.println(ts.format(t - 1));
-
-        Random random = new Random();
-        for (long time = 0; time <= System.currentTimeMillis() / 1000; ) {
-            String s1 = ts.timeStamp2Date(time);
-            String s2 = ts.format(time);
-            System.out.println(s1.equals(s2) + ": " + time + ", " + s1 + ", " + s2);
-            time = time + random.nextInt(10000000);
-            if (!s1.equals(s2)) {
-                break;
-            }
+        public Pair(int value, long left) {
+            this.value = value;
+            this.left = left;
         }
-    }
 
-    private static void case2() {
-        TimeStamp ts = new TimeStamp(8);
-        long t = 515524332L;
-        System.out.print(ts.timeStamp2Date(t) + " = ");
-        System.out.println(ts.format(t));
-
-        t = 515527332L;
-        System.out.print(ts.timeStamp2Date(t) + " = ");
-        System.out.println(ts.format(t));
+        @Override
+        public String toString() {
+            return "value=" + value + ", left=" + left;
+        }
     }
 }

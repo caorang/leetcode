@@ -55,34 +55,34 @@ import java.util.Set;
  */
 public class RingsAndRods {
 
-	public static void main(String[] args) {
-		RingsAndRods ringsAndRods = new RingsAndRods();
-		System.out.println(ringsAndRods.countPoints("B0B6G0R6R0R6G9"));
-		System.out.println(ringsAndRods.countPoints("B0R0G0R9R0B0G0"));
-		System.out.println(ringsAndRods.countPoints("G4"));
-	}
+    public static void main(String[] args) {
+        RingsAndRods ringsAndRods = new RingsAndRods();
+        System.out.println(ringsAndRods.countPoints("B0B6G0R6R0R6G9"));
+        System.out.println(ringsAndRods.countPoints("B0R0G0R9R0B0G0"));
+        System.out.println(ringsAndRods.countPoints("G4"));
+    }
 
-	public int countPoints(String rings) {
-		Map<Integer, Set<String>> ringStatus = new HashMap<>();
-		for (int i = 0; i < rings.length() - 1; ) {
-			String ring = rings.substring(i, i + 2);
-			char color = ring.charAt(0);
-			int pos = ring.charAt(1) - '0';
-			i = i + 2;
-			if (ringStatus.containsKey(pos)) {
-				ringStatus.get(pos).add(color + "");
-			} else {
-				ringStatus.put(pos, new HashSet<>(Collections.singleton(color + "")));
-			}
-		}
+    public int countPoints(String rings) {
+        Map<Integer, Set<String>> ringStatus = new HashMap<>();
+        for (int i = 0; i < rings.length() - 1; ) {
+            String ring = rings.substring(i, i + 2);
+            char color = ring.charAt(0);
+            int pos = ring.charAt(1) - '0';
+            i = i + 2;
+            if (ringStatus.containsKey(pos)) {
+                ringStatus.get(pos).add(color + "");
+            } else {
+                ringStatus.put(pos, new HashSet<>(Collections.singleton(color + "")));
+            }
+        }
 
-		int count = 0;
-		for (Map.Entry<Integer, Set<String>> entry : ringStatus.entrySet()) {
-			if (entry.getValue() != null && entry.getValue().size() == 3) {
-				count++;
-			}
-		}
+        int count = 0;
+        for (Map.Entry<Integer, Set<String>> entry : ringStatus.entrySet()) {
+            if (entry.getValue() != null && entry.getValue().size() == 3) {
+                count++;
+            }
+        }
 
-		return count;
-	}
+        return count;
+    }
 }

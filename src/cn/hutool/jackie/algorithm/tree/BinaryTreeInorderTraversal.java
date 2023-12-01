@@ -30,66 +30,67 @@ import java.util.Queue;
  */
 public class BinaryTreeInorderTraversal {
 
-	public static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)), new TreeNode(5));
+        System.out.println(root);
+        System.out.println(new BinaryTreeInorderTraversal().inorderTraversal(root));
+    }
 
-		TreeNode(int val) {
-			this.val = val;
-		}
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        if (root.left != null) {
+            result.addAll(inorderTraversal(root.left));
+        }
+        result.add(root.val);
+        if (root.right != null) {
+            result.addAll(inorderTraversal(root.right));
+        }
+        return result;
+    }
 
-		@Override
-		public String toString() {
-			if (this == null) {
-				return null;
-			}
-			StringBuilder sb = new StringBuilder();
-			Queue<TreeNode> queue = new LinkedList<>();
-			queue.offer(this);
+    public static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-			while (!queue.isEmpty()) {
-				int levelSize = queue.size();
-				for (int i = 0; i < levelSize; i++) {
-					TreeNode node = queue.poll();
-					if (node == null) {
-						sb.append("null ");
-					} else {
-						sb.append(node.val + " ");
-						queue.offer(node.left);
-						queue.offer(node.right);
-					}
-				}
-				sb.append("\n");
-			}
+        TreeNode(int val) {
+            this.val = val;
+        }
 
-			return sb.toString();
-		}
-	}
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
 
-	public static void main(String[] args) {
-		TreeNode root = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4) ), new TreeNode(5) );
-		System.out.println(root);
-		System.out.println(new BinaryTreeInorderTraversal().inorderTraversal(root));
-	}
+        @Override
+        public String toString() {
+            if (this == null) {
+                return null;
+            }
+            StringBuilder sb = new StringBuilder();
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(this);
 
-	public List<Integer> inorderTraversal(TreeNode root) {
-		List<Integer> result = new ArrayList<>();
-		if (root == null) {
-			return result;
-		}
-		if (root.left != null) {
-			result.addAll(inorderTraversal(root.left));
-		}
-		result.add(root.val);
-		if (root.right != null) {
-			result.addAll(inorderTraversal(root.right));
-		}
-		return result;
-	}
+            while (!queue.isEmpty()) {
+                int levelSize = queue.size();
+                for (int i = 0; i < levelSize; i++) {
+                    TreeNode node = queue.poll();
+                    if (node == null) {
+                        sb.append("null ");
+                    } else {
+                        sb.append(node.val + " ");
+                        queue.offer(node.left);
+                        queue.offer(node.right);
+                    }
+                }
+                sb.append("\n");
+            }
+
+            return sb.toString();
+        }
+    }
 }

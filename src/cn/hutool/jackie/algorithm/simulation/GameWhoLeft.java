@@ -23,50 +23,50 @@ package cn.hutool.jackie.algorithm.simulation;
  */
 public class GameWhoLeft {
 
-	public static class ListNode {
-		int val;
-		ListNode next;
+    public static void main(String[] args) {
+        System.out.println(new GameWhoLeft().iceBreakingGame(7, 4));
+        System.out.println(new GameWhoLeft().iceBreakingGame(12, 5));
+        System.out.println(new GameWhoLeft().iceBreakingGame(5, 1));
+    }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+    public int iceBreakingGame(int num, int target) {
+        if (target == 1) {
+            return num - 1;
+        }
+        ListNode head = new ListNode(0);
+        ListNode temp = head;
+        for (int i = 1; i < num; i++) {
+            head.next = new ListNode(i);
+            head = head.next;
+        }
+        head.next = temp;
+        head = temp;
+        int index = 1;
+        while (head != null) {
+            index++;
+            if (index == target) {
+                index = 1;
+                head.next = head.next.next;
+            }
+            if (head == head.next) {
+                break;
+            }
+            head = head.next;
+        }
+        return head.val;
+    }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-	}
+    public static class ListNode {
+        int val;
+        ListNode next;
 
-	public static void main(String[] args) {
-		System.out.println(new GameWhoLeft().iceBreakingGame(7, 4));
-		System.out.println(new GameWhoLeft().iceBreakingGame(12, 5));
-		System.out.println(new GameWhoLeft().iceBreakingGame(5, 1));
-	}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-	public int iceBreakingGame(int num, int target) {
-		if (target == 1) {
-			return num - 1;
-		}
-		ListNode head = new ListNode(0);
-		ListNode temp = head;
-		for (int i = 1; i < num; i++) {
-			head.next = new ListNode(i);
-			head = head.next;
-		}
-		head.next = temp;
-		head = temp;
-		int index = 1;
-		while (head != null) {
-			index++;
-			if (index == target) {
-				index = 1;
-				head.next = head.next.next;
-			}
-			if (head == head.next) {
-				break;
-			}
-			head = head.next;
-		}
-		return head.val;
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

@@ -62,14 +62,6 @@ public class LfuCache {
 
     }
 
-    public int get(int key) {
-        return 0;
-    }
-
-    public void put(int key, int value) {
-
-    }
-
     public static void main(String[] args) {
         LfuCache lfu = new LfuCache(2);
         lfu.put(1, 1);
@@ -81,5 +73,13 @@ public class LfuCache {
         lfu.get(1);
         lfu.get(3);
         lfu.get(4);
+    }
+
+    public int get(int key) {
+        return 0;
+    }
+
+    public void put(int key, int value) {
+
     }
 }

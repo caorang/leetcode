@@ -17,6 +17,20 @@ public class FileSystem {
     public FileSystem() {
     }
 
+    public static void main(String[] args) {
+        FileSystem fileSystem = new FileSystem();
+        fileSystem.mkdir("/a/b/c");
+        fileSystem.addContentToFile("/a/b/c/d", "hello");
+        System.out.println(fileSystem.readContentFromFile("/a/b/c/d"));
+        fileSystem.addContentToFile("/a/b/c/d", " world");
+        System.out.println(fileSystem.readContentFromFile("/a/b/c/d"));
+        System.out.println(fileSystem.ls("/a/b/c/d"));
+        System.out.println(fileSystem.ls("/a/b/c"));
+        System.out.println(fileSystem.ls("/a/b"));
+        System.out.println(fileSystem.ls("/a"));
+        System.out.println(fileSystem.ls("/a/b/c/d"));
+    }
+
     public List<String> ls(String path) {
         List<String> ans = new ArrayList<>();
         Trie node = root.search(path);
@@ -46,20 +60,6 @@ public class FileSystem {
     public String readContentFromFile(String filePath) {
         Trie node = root.search(filePath);
         return node.content.toString();
-    }
-
-    public static void main(String[] args) {
-        FileSystem fileSystem = new FileSystem();
-        fileSystem.mkdir("/a/b/c");
-        fileSystem.addContentToFile("/a/b/c/d", "hello");
-        System.out.println(fileSystem.readContentFromFile("/a/b/c/d"));
-        fileSystem.addContentToFile("/a/b/c/d", " world");
-        System.out.println(fileSystem.readContentFromFile("/a/b/c/d"));
-        System.out.println(fileSystem.ls("/a/b/c/d"));
-        System.out.println(fileSystem.ls("/a/b/c"));
-        System.out.println(fileSystem.ls("/a/b"));
-        System.out.println(fileSystem.ls("/a"));
-        System.out.println(fileSystem.ls("/a/b/c/d"));
     }
 }
 

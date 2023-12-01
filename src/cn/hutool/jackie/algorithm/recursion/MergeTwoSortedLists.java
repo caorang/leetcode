@@ -28,55 +28,55 @@ package cn.hutool.jackie.algorithm.recursion;
  */
 public class MergeTwoSortedLists {
 
-	public static class ListNode {
-		int val;
-		ListNode next;
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(4)));
+        ListNode l2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+        MergeTwoSortedLists solution = new MergeTwoSortedLists();
+        System.out.println(solution.mergeTwoLists(l1, l2).toString());
+    }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        if (l1.val < l2.val) {
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
+        }
+    }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
+    public static class ListNode {
+        int val;
+        ListNode next;
 
-		@Override
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-			ListNode cur = this;
-			while (cur != null) {
-				sb.append(cur.val);
-				if (cur.next != null) {
-					sb.append(" → ");
-				}
-				cur = cur.next;
-			}
-			return sb.toString();
-		}
-	}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-	public static void main(String[] args) {
-		ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(4)));
-		ListNode l2 = new ListNode(1, new ListNode(3, new ListNode(4)));
-		MergeTwoSortedLists solution = new MergeTwoSortedLists();
-		System.out.println(solution.mergeTwoLists(l1, l2).toString());
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
 
-	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-		if (l1 == null) {
-			return l2;
-		}
-		if (l2 == null) {
-			return l1;
-		}
-		if (l1.val < l2.val) {
-			l1.next = mergeTwoLists(l1.next, l2);
-			return l1;
-		} else {
-			l2.next = mergeTwoLists(l1, l2.next);
-			return l2;
-		}
-	}
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            ListNode cur = this;
+            while (cur != null) {
+                sb.append(cur.val);
+                if (cur.next != null) {
+                    sb.append(" → ");
+                }
+                cur = cur.next;
+            }
+            return sb.toString();
+        }
+    }
 }
 

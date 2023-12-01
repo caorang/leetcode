@@ -34,62 +34,62 @@ package cn.hutool.jackie.algorithm.recursion;
  */
 public class ReverseNodesInKGroup {
 
-	public static class ListNode {
-		int val;
-		ListNode next;
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6))))));
+        ListNode result = new ReverseNodesInKGroup().reverseKGroup(head, 3);
+        System.out.println(result.toString());
+    }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode cur = head;
+        for (int i = 0; i < k; i++) {
+            if (cur == null) {
+                return head;
+            }
+            cur = cur.next;
+        }
+        ListNode newHead = reverse(head, cur);
+        head.next = reverseKGroup(cur, k);
+        return newHead;
+    }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
+    private ListNode reverse(ListNode start, ListNode end) {
+        ListNode pre = null;
+        ListNode cur = start;
+        while (cur != end) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
 
-		@Override
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-			ListNode cur = this;
-			while (cur != null) {
-				sb.append(cur.val);
-				if (cur.next != null) {
-					sb.append(" → ");
-				}
-				cur = cur.next;
-			}
-			return sb.toString();
-		}
-	}
+    public static class ListNode {
+        int val;
+        ListNode next;
 
-	public static void main(String[] args) {
-		ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6))))));
-		ListNode result = new ReverseNodesInKGroup().reverseKGroup(head, 3);
-		System.out.println(result.toString());
-	}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-	public ListNode reverseKGroup(ListNode head, int k) {
-		ListNode cur = head;
-		for (int i = 0; i < k; i++) {
-			if (cur == null) {
-				return head;
-			}
-			cur = cur.next;
-		}
-		ListNode newHead = reverse(head, cur);
-		head.next = reverseKGroup(cur, k);
-		return newHead;
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
 
-	private ListNode reverse(ListNode start, ListNode end) {
-		ListNode pre = null;
-		ListNode cur = start;
-		while (cur != end) {
-			ListNode next = cur.next;
-			cur.next = pre;
-			pre = cur;
-			cur = next;
-		}
-		return pre;
-	}
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            ListNode cur = this;
+            while (cur != null) {
+                sb.append(cur.val);
+                if (cur.next != null) {
+                    sb.append(" → ");
+                }
+                cur = cur.next;
+            }
+            return sb.toString();
+        }
+    }
 }

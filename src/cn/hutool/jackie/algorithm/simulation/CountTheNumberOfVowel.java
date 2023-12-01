@@ -41,29 +41,29 @@ package cn.hutool.jackie.algorithm.simulation;
  */
 public class CountTheNumberOfVowel {
 
-	public static void main(String[] args) {
-		CountTheNumberOfVowel c = new CountTheNumberOfVowel();
-		System.out.println(c.vowelStrings(new String[] {"are", "amy", "u"}, 0, 2));
-	}
+    public static void main(String[] args) {
+        CountTheNumberOfVowel c = new CountTheNumberOfVowel();
+        System.out.println(c.vowelStrings(new String[] {"are", "amy", "u"}, 0, 2));
+    }
 
-	public int vowelStrings(String[] words, int left, int right) {
-		if (words == null || words.length == 0) {
-			return 0;
-		}
-		int count = 0;
-		for (int i = left; i <= right && i < words.length; i++) {
-			String word = words[i];
-			if (isVowel(word)) {
-				count++;
-			}
-		}
-		return count;
-	}
+    public int vowelStrings(String[] words, int left, int right) {
+        if (words == null || words.length == 0) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = left; i <= right && i < words.length; i++) {
+            String word = words[i];
+            if (isVowel(word)) {
+                count++;
+            }
+        }
+        return count;
+    }
 
-	private boolean isVowel(String word) {
-		return (word.charAt(0) == 'a' || word.charAt(0) == 'e' || word.charAt(0) == 'i'
-				|| word.charAt(0) == 'o' || word.charAt(0) == 'u')
-				&& (word.charAt(word.length() - 1) == 'a' || word.charAt(word.length() - 1) == 'e' || word.charAt(word.length() - 1) == 'i'
-				|| word.charAt(word.length() - 1) == 'o' || word.charAt(word.length() - 1) == 'u');
-	}
+    private boolean isVowel(String word) {
+        return (word.charAt(0) == 'a' || word.charAt(0) == 'e' || word.charAt(0) == 'i'
+                || word.charAt(0) == 'o' || word.charAt(0) == 'u')
+                && (word.charAt(word.length() - 1) == 'a' || word.charAt(word.length() - 1) == 'e' || word.charAt(word.length() - 1) == 'i'
+                || word.charAt(word.length() - 1) == 'o' || word.charAt(word.length() - 1) == 'u');
+    }
 }

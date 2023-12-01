@@ -42,67 +42,67 @@ package cn.hutool.jackie.algorithm.divide;
  */
 public class MergeKSortedLists {
 
-	public static class ListNode {
-		int val;
-		ListNode next;
+    public static void main(String[] args) {
+        ListNode[] lists = new ListNode[3];
+        lists[0] = new ListNode(1, new ListNode(4, new ListNode(5)));
+        lists[1] = new ListNode(1, new ListNode(3, new ListNode(4)));
+        lists[2] = new ListNode(2, new ListNode(6));
+        MergeKSortedLists solution = new MergeKSortedLists();
+        System.out.println(solution.mergeKLists(lists));
+    }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        int minIndex = 0;
+        ListNode min = lists[minIndex];
+        for (int i = 1; i < lists.length; i++) {
+            if (lists[i] == null) {
+                continue;
+            }
+            if (min == null) {
+                min = lists[i];
+                minIndex = i;
+            }
+            if (lists[i].val < min.val) {
+                min = lists[i];
+                minIndex = i;
+            }
+        }
+        if (min == null) {
+            return null;
+        }
+        lists[minIndex] = min.next;
+        min.next = mergeKLists(lists);
+        return min;
+    }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
+    public static class ListNode {
+        int val;
+        ListNode next;
 
-		@Override
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-			ListNode cur = this;
-			while (cur != null) {
-				sb.append(cur.val);
-				if (cur.next != null) {
-					sb.append(" → ");
-				}
-				cur = cur.next;
-			}
-			return sb.toString();
-		}
-	}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-	public static void main(String[] args) {
-		ListNode[] lists = new ListNode[3];
-		lists[0] = new ListNode(1, new ListNode(4, new ListNode(5)));
-		lists[1] = new ListNode(1, new ListNode(3, new ListNode(4)));
-		lists[2] = new ListNode(2, new ListNode(6));
-		MergeKSortedLists solution = new MergeKSortedLists();
-		System.out.println(solution.mergeKLists(lists));
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
 
-	public ListNode mergeKLists(ListNode[] lists) {
-		if (lists == null || lists.length == 0) {
-			return null;
-		}
-		int minIndex = 0;
-		ListNode min = lists[minIndex];
-		for (int i = 1; i < lists.length; i++) {
-			if (lists[i] == null) {
-				continue;
-			}
-			if (min == null) {
-				min = lists[i];
-				minIndex = i;
-			}
-			if (lists[i].val < min.val) {
-				min = lists[i];
-				minIndex = i;
-			}
-		}
-		if (min == null) {
-			return null;
-		}
-		lists[minIndex] = min.next;
-		min.next = mergeKLists(lists);
-		return min;
-	}
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            ListNode cur = this;
+            while (cur != null) {
+                sb.append(cur.val);
+                if (cur.next != null) {
+                    sb.append(" → ");
+                }
+                cur = cur.next;
+            }
+            return sb.toString();
+        }
+    }
 }

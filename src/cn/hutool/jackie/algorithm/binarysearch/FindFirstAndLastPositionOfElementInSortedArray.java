@@ -28,56 +28,56 @@ import java.util.Arrays;
  */
 public class FindFirstAndLastPositionOfElementInSortedArray {
 
-	public static void main(String[] args) {
-		System.out.println(Arrays.toString(
-				new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {5, 7, 7, 8, 8, 10}, 8)
-		));
-		System.out.println(Arrays.toString(
-				new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {5, 7, 7, 8, 8, 10}, 6)
-		));
-		System.out.println(Arrays.toString(
-				new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {0}, 0)
-		));
-		System.out.println(Arrays.toString(
-				new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {1, 4}, 4)
-		));
-	}
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(
+                new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {5, 7, 7, 8, 8, 10}, 8)
+        ));
+        System.out.println(Arrays.toString(
+                new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {5, 7, 7, 8, 8, 10}, 6)
+        ));
+        System.out.println(Arrays.toString(
+                new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {0}, 0)
+        ));
+        System.out.println(Arrays.toString(
+                new FindFirstAndLastPositionOfElementInSortedArray().searchRange(new int[] {1, 4}, 4)
+        ));
+    }
 
-	public int[] searchRange(int[] nums, int target) {
-		if (nums == null || nums.length == 0) {
-			return new int[] {-1, -1};
-		}
-		if (nums.length == 1) {
-			if (nums[0] == target) {
-				return new int[] {0, 0};
-			}
-			return new int[] {-1, -1};
-		}
-		boolean flag = false;
-		int left = 0, right = nums.length - 1;
-		while (left <= right) {
-			int mid = left + (right - left) / 2;
-			if (nums[mid] < target) {
-				left = mid + 1;
-			} else if (nums[mid] == target) {
-				left = mid;
-				flag = true;
-				break;
-			} else {
-				right = mid - 1;
-			}
-		}
-		if (flag) {
-			int index1 = left;
-			while (index1 >= 0 && nums[index1] == target) {
-				index1--;
-			}
-			int index2 = left;
-			while (index2 < nums.length && nums[index2] == target) {
-				index2++;
-			}
-			return new int[] {index1 + 1, index2 - 1};
-		}
-		return new int[] {-1, -1};
-	}
+    public int[] searchRange(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return new int[] {-1, -1};
+        }
+        if (nums.length == 1) {
+            if (nums[0] == target) {
+                return new int[] {0, 0};
+            }
+            return new int[] {-1, -1};
+        }
+        boolean flag = false;
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else if (nums[mid] == target) {
+                left = mid;
+                flag = true;
+                break;
+            } else {
+                right = mid - 1;
+            }
+        }
+        if (flag) {
+            int index1 = left;
+            while (index1 >= 0 && nums[index1] == target) {
+                index1--;
+            }
+            int index2 = left;
+            while (index2 < nums.length && nums[index2] == target) {
+                index2++;
+            }
+            return new int[] {index1 + 1, index2 - 1};
+        }
+        return new int[] {-1, -1};
+    }
 }

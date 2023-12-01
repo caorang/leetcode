@@ -43,6 +43,18 @@ import java.util.TreeSet;
  */
 public class SmallestNumberInInfiniteSet {
 
+    public static void main(String[] args) {
+        SmallestInfiniteSet set = new SmallestInfiniteSet(5000);
+        set.addBack(2);
+        System.out.println(set.popSmallest());
+        System.out.println(set.popSmallest());
+        System.out.println(set.popSmallest());
+        set.addBack(1);
+        System.out.println(set.popSmallest());
+        System.out.println(set.popSmallest());
+        System.out.println(set.popSmallest());
+    }
+
     static class SmallestInfiniteSet {
 
         private int size;
@@ -65,17 +77,5 @@ public class SmallestNumberInInfiniteSet {
                 this.pool.add(num);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        SmallestInfiniteSet set = new SmallestInfiniteSet(5000);
-        set.addBack(2);
-        System.out.println(set.popSmallest());
-        System.out.println(set.popSmallest());
-        System.out.println(set.popSmallest());
-        set.addBack(1);
-        System.out.println(set.popSmallest());
-        System.out.println(set.popSmallest());
-        System.out.println(set.popSmallest());
     }
 }

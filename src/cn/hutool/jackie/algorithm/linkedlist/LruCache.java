@@ -9,27 +9,11 @@ import java.util.Map;
  */
 public class LruCache<K, V> {
 
-    static class LinkedNode<K, V> {
-        K key;
-        V value;
-        LinkedNode prev;
-        LinkedNode next;
-
-        public LinkedNode() {
-        }
-
-        public LinkedNode(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
     private int capacity;
     private int size;
     private LinkedNode head;
     private LinkedNode tail;
     private Map<K, LinkedNode> cache;
-
     public LruCache(int capacity) {
         cache = new HashMap<K, LinkedNode>();
         this.capacity = capacity;
@@ -38,6 +22,34 @@ public class LruCache<K, V> {
         tail = new LinkedNode();
         head.next = tail;
         tail.prev = head;
+    }
+
+    public static void main(String[] args) {
+        LruCache<Integer, Integer> lruCache = new LruCache<>(2);
+        lruCache.put(1, 1);
+        lruCache.put(2, 2);
+
+        System.out.println("first: " + lruCache);
+        System.out.println("get(1): " + lruCache.get(1));
+        System.out.println("after get(1): " + lruCache);
+
+        lruCache.put(3, 3);
+        System.out.println("after put(3): " + lruCache);
+
+        System.out.println("get(2): " + lruCache.get(2));
+        System.out.println("after get(2): " + lruCache);
+
+        lruCache.put(4, 4);
+        System.out.println("after put(4): " + lruCache);
+
+        System.out.println("get(1): " + lruCache.get(1));
+        System.out.println("after get(1): " + lruCache);
+
+        System.out.println("get(3): " + lruCache.get(3));
+        System.out.println("after get(3): " + lruCache);
+
+        System.out.println("get(4): " + lruCache.get(4));
+        System.out.println("after get(4): " + lruCache);
     }
 
     public V get(K key) {
@@ -100,31 +112,18 @@ public class LruCache<K, V> {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        LruCache<Integer, Integer> lruCache = new LruCache<>(2);
-        lruCache.put(1, 1);
-        lruCache.put(2, 2);
+    static class LinkedNode<K, V> {
+        K key;
+        V value;
+        LinkedNode prev;
+        LinkedNode next;
 
-        System.out.println("first: " + lruCache);
-        System.out.println("get(1): " + lruCache.get(1));
-        System.out.println("after get(1): " + lruCache);
+        public LinkedNode() {
+        }
 
-        lruCache.put(3, 3);
-        System.out.println("after put(3): " + lruCache);
-
-        System.out.println("get(2): " + lruCache.get(2));
-        System.out.println("after get(2): " + lruCache);
-
-        lruCache.put(4, 4);
-        System.out.println("after put(4): " + lruCache);
-
-        System.out.println("get(1): " + lruCache.get(1));
-        System.out.println("after get(1): " + lruCache);
-
-        System.out.println("get(3): " + lruCache.get(3));
-        System.out.println("after get(3): " + lruCache);
-
-        System.out.println("get(4): " + lruCache.get(4));
-        System.out.println("after get(4): " + lruCache);
+        public LinkedNode(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 }

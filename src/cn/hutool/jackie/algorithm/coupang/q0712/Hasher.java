@@ -3,27 +3,6 @@ package cn.hutool.jackie.algorithm.coupang.q0712;
 import java.util.ArrayList;
 
 public class Hasher<K, V> {
-    private static class LinkedListNode<K, V> {
-        public LinkedListNode<K, V> next;
-        public LinkedListNode<K, V> prev;
-        public K key;
-        public V value;
-
-        public LinkedListNode(K k, V v) {
-            key = k;
-            value = v;
-        }
-
-        public String printForward() {
-            String data = "(" + key + "," + value + ")";
-            if (next != null) {
-                return data + "->" + next.printForward();
-            } else {
-                return data;
-            }
-        }
-    }
-
     private ArrayList<LinkedListNode<K, V>> arr;
 
     public Hasher(int capacity) {
@@ -106,6 +85,27 @@ public class Hasher<K, V> {
         for (int i = 0; i < arr.size(); i++) {
             String s = arr.get(i) == null ? "" : arr.get(i).printForward();
             System.out.println(i + ": " + s);
+        }
+    }
+
+    private static class LinkedListNode<K, V> {
+        public LinkedListNode<K, V> next;
+        public LinkedListNode<K, V> prev;
+        public K key;
+        public V value;
+
+        public LinkedListNode(K k, V v) {
+            key = k;
+            value = v;
+        }
+
+        public String printForward() {
+            String data = "(" + key + "," + value + ")";
+            if (next != null) {
+                return data + "->" + next.printForward();
+            } else {
+                return data;
+            }
         }
     }
 }

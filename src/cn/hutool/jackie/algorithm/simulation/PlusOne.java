@@ -30,36 +30,36 @@ import java.util.Arrays;
  */
 public class PlusOne {
 
-	public static void main(String[] args) {
-		System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {1, 2, 3})));
-		System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {4, 3, 2, 1})));
-		System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {0})));
-		System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {9})));
-		System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {9, 9, 9})));
-		System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {1, 2, 9})));
-		System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {1, 9, 9})));
-	}
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {1, 2, 3})));
+        System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {4, 3, 2, 1})));
+        System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {0})));
+        System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {9})));
+        System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {9, 9, 9})));
+        System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {1, 2, 9})));
+        System.out.println(Arrays.toString(new PlusOne().plusOne(new int[] {1, 9, 9})));
+    }
 
-	public int[] plusOne(int[] digits) {
-		if (digits == null || digits.length == 0) {
-			return digits;
-		}
-		boolean flag = false;
-		for (int i = digits.length - 1; i >= 0; i--) {
-			int num = digits[i];
-			if (num != 9) {
-				digits[i]++;
-				flag = true;
-				break;
-			} else {
-				digits[i] = 0;
-			}
-		}
-		if (!flag) {
-			digits = new int[digits.length + 1];
-			Arrays.fill(digits, 0);
-			digits[0] = 1;
-		}
-		return digits;
-	}
+    public int[] plusOne(int[] digits) {
+        if (digits == null || digits.length == 0) {
+            return digits;
+        }
+        boolean flag = false;
+        for (int i = digits.length - 1; i >= 0; i--) {
+            int num = digits[i];
+            if (num != 9) {
+                digits[i]++;
+                flag = true;
+                break;
+            } else {
+                digits[i] = 0;
+            }
+        }
+        if (!flag) {
+            digits = new int[digits.length + 1];
+            Arrays.fill(digits, 0);
+            digits[0] = 1;
+        }
+        return digits;
+    }
 }

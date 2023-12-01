@@ -6,26 +6,6 @@ package cn.hutool.jackie.algorithm.linkedlist;
  */
 public class ReverseList {
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            ListNode node = this;
-            while (node != null) {
-                sb.append(node.val).append("->");
-                node = node.next;
-            }
-            return sb.toString();
-        }
-    }
-
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         ListNode node2 = new ListNode(2);
@@ -87,5 +67,25 @@ public class ReverseList {
         leftNode.next = curr;
 
         return dummyNode.next;
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            ListNode node = this;
+            while (node != null) {
+                sb.append(node.val).append("->");
+                node = node.next;
+            }
+            return sb.toString();
+        }
     }
 }

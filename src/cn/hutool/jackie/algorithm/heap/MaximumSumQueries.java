@@ -66,7 +66,7 @@ public class MaximumSumQueries {
                     stack.remove(stack.size() - 1);
                 }
                 if (stack.isEmpty() || stack.get(stack.size() - 1)[0] < num2) {
-                    stack.add(new int[]{num2, num1 + num2});
+                    stack.add(new int[] {num2, num1 + num2});
                 }
                 j++;
             }

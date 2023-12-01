@@ -36,51 +36,51 @@ import java.util.Arrays;
  */
 public class NextPermutation {
 
-	public static void main(String[] args) {
-		NextPermutation permutation = new NextPermutation();
-		int[] nums = new int[] {1, 1, 3, 5, 5};
-		int i = 0;
-		while (i < 100) {
-			System.out.print(Arrays.toString(nums));
-			permutation.nextPermutation(nums);
-			System.out.println();
-			i++;
-		}
-	}
+    public static void main(String[] args) {
+        NextPermutation permutation = new NextPermutation();
+        int[] nums = new int[] {1, 1, 3, 5, 5};
+        int i = 0;
+        while (i < 100) {
+            System.out.print(Arrays.toString(nums));
+            permutation.nextPermutation(nums);
+            System.out.println();
+            i++;
+        }
+    }
 
-	public void nextPermutation(int[] nums) {
-		for (int i = nums.length - 2; i >= 0; i--) {
-			if (nums[i] < nums[i + 1]) {
-				int j = nums.length - 1;
-				while (j > i && nums[j] <= nums[i]) {
-					j--;
-				}
-				System.out.print("#swap(" + i + "," + j + ") → ");
-				swap(nums, i, j);
-				System.out.print(Arrays.toString(nums));
-				System.out.print("#reverse(" + (i + 1) + "," + (nums.length - 1) + ") → ");
-				reverse(nums, i + 1);
-				System.out.print(Arrays.toString(nums));
-				return;
-			}
-		}
-		System.out.print("#reverse(all) → ");
-		reverse(nums, 0);
-		System.out.print(Arrays.toString(nums));
-	}
+    public void nextPermutation(int[] nums) {
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                int j = nums.length - 1;
+                while (j > i && nums[j] <= nums[i]) {
+                    j--;
+                }
+                System.out.print("#swap(" + i + "," + j + ") → ");
+                swap(nums, i, j);
+                System.out.print(Arrays.toString(nums));
+                System.out.print("#reverse(" + (i + 1) + "," + (nums.length - 1) + ") → ");
+                reverse(nums, i + 1);
+                System.out.print(Arrays.toString(nums));
+                return;
+            }
+        }
+        System.out.print("#reverse(all) → ");
+        reverse(nums, 0);
+        System.out.print(Arrays.toString(nums));
+    }
 
-	private void reverse(int[] nums, int i) {
-		int j = nums.length - 1;
-		while (i < j) {
-			swap(nums, i, j);
-			i++;
-			j--;
-		}
-	}
+    private void reverse(int[] nums, int i) {
+        int j = nums.length - 1;
+        while (i < j) {
+            swap(nums, i, j);
+            i++;
+            j--;
+        }
+    }
 
-	private void swap(int[] nums, int i, int j) {
-		int temp = nums[i];
-		nums[i] = nums[j];
-		nums[j] = temp;
-	}
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
 }

@@ -30,16 +30,16 @@ package cn.hutool.jackie.algorithm.array;
  */
 public class SearchInRotatedSortedArray2 {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	}
+    }
 
-	public boolean search(int[] nums, int target) {
-		for (int i = 0; i < nums.length; i++) {
-			if (nums[i] == target) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public boolean search(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

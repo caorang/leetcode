@@ -25,24 +25,24 @@ package cn.hutool.jackie.algorithm.string;
  */
 public class LengthOfLastWord {
 
-	public static void main(String[] args) {
-		System.out.println(new LengthOfLastWord().lengthOfLastWord("luffy is still joyboy"));
-	}
+    public static void main(String[] args) {
+        System.out.println(new LengthOfLastWord().lengthOfLastWord("luffy is still joyboy"));
+    }
 
-	public int lengthOfLastWord(String s) {
-		if (s == null || s.trim().length() == 0) {
-			return 0;
-		}
-		s = s.trim();
-		int length = 0;
-		for (int i = s.length() - 1; i >= 0; i--) {
-			char c = s.charAt(i);
-			if (c != ' ') {
-				length++;
-			} else {
-				break;
-			}
-		}
-		return length;
-	}
+    public int lengthOfLastWord(String s) {
+        if (s == null || s.trim().length() == 0) {
+            return 0;
+        }
+        s = s.trim();
+        int length = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            if (c != ' ') {
+                length++;
+            } else {
+                break;
+            }
+        }
+        return length;
+    }
 }

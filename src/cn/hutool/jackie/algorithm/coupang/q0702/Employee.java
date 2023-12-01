@@ -5,9 +5,9 @@ package cn.hutool.jackie.algorithm.coupang.q0702;
  */
 abstract class Employee {
 
+    protected Rank rank;
     private int employeeId;
     private Call currentCall = null;
-    protected Rank rank;
     private CallHandler callHandler;
 
     public Employee(CallHandler handler, int employeeId) {

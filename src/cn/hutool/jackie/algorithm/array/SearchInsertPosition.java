@@ -31,32 +31,32 @@ package cn.hutool.jackie.algorithm.array;
  * @See <a href="https://leetcode-cn.com/problems/search-insert-position/">...</a>
  */
 public class SearchInsertPosition {
-	public static void main(String[] args) {
-		int[] nums = {1, 3, 5, 6};
-		int target = 5;
-		System.out.println(new SearchInsertPosition().searchInsert(nums, target));
+    public static void main(String[] args) {
+        int[] nums = {1, 3, 5, 6};
+        int target = 5;
+        System.out.println(new SearchInsertPosition().searchInsert(nums, target));
 
-		nums = new int[] {1, 3, 5, 6};
-		target = 2;
-		System.out.println(new SearchInsertPosition().searchInsert(nums, target));
+        nums = new int[] {1, 3, 5, 6};
+        target = 2;
+        System.out.println(new SearchInsertPosition().searchInsert(nums, target));
 
-		nums = new int[] {1, 3, 5, 6};
-		target = 7;
-		System.out.println(new SearchInsertPosition().searchInsert(nums, target));
-	}
+        nums = new int[] {1, 3, 5, 6};
+        target = 7;
+        System.out.println(new SearchInsertPosition().searchInsert(nums, target));
+    }
 
-	public int searchInsert(int[] nums, int target) {
-		if (nums == null || nums.length == 0) {
-			return -1;
-		}
-		for (int i = 0; i < nums.length; i++) {
-			int num = nums[i];
-			if (target == num) {
-				return i;
-			} else if (num > target) {
-				return i;
-			}
-		}
-		return nums.length;
-	}
+    public int searchInsert(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (target == num) {
+                return i;
+            } else if (num > target) {
+                return i;
+            }
+        }
+        return nums.length;
+    }
 }

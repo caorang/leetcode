@@ -26,22 +26,22 @@ import java.util.Set;
  */
 public class RepeatedDnaSequences {
 
-	public static void main(String[] args) {
-		RepeatedDnaSequences repeatedDnaSequences = new RepeatedDnaSequences();
-		System.out.println(repeatedDnaSequences.findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"));
-		System.out.println(repeatedDnaSequences.findRepeatedDnaSequences("AAAAAAAAAAAAA"));
-	}
+    public static void main(String[] args) {
+        RepeatedDnaSequences repeatedDnaSequences = new RepeatedDnaSequences();
+        System.out.println(repeatedDnaSequences.findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"));
+        System.out.println(repeatedDnaSequences.findRepeatedDnaSequences("AAAAAAAAAAAAA"));
+    }
 
-	public List<String> findRepeatedDnaSequences(String s) {
-		Set<String> result = new HashSet<>();
-		Set<String> set = new HashSet<>();
-		for (int i = 0; i <= s.length() - 10; i++) {
-			String sub = s.substring(i, i + 10);
-			if (set.contains(sub)) {
-				result.add(sub);
-			}
-			set.add(sub);
-		}
-		return new ArrayList<>(result);
-	}
+    public List<String> findRepeatedDnaSequences(String s) {
+        Set<String> result = new HashSet<>();
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i <= s.length() - 10; i++) {
+            String sub = s.substring(i, i + 10);
+            if (set.contains(sub)) {
+                result.add(sub);
+            }
+            set.add(sub);
+        }
+        return new ArrayList<>(result);
+    }
 }

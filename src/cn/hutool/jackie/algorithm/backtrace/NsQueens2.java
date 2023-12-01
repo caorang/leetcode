@@ -30,15 +30,15 @@ import java.util.Arrays;
  */
 public class NsQueens2 {
 
+    char[][] board;
+    int n;
+    int res = 0;
+
     public static void main(String[] args) {
         for (int i = 0; i < 15; i++) {
             System.out.println("QueensNum: " + i + ", Total: " + new NsQueens2().totalNQueens(i));
         }
     }
-
-    char[][] board;
-    int n;
-    int res = 0;
 
     public int totalNQueens(int _n) {
         n = _n;

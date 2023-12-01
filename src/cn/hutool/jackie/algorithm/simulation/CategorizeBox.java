@@ -18,27 +18,27 @@ import java.util.List;
  */
 public class CategorizeBox {
 
-	public static void main(String[] args) {
-		System.out.println(new CategorizeBox().categorizeBox(2909, 3968, 3272, 300));
-	}
+    public static void main(String[] args) {
+        System.out.println(new CategorizeBox().categorizeBox(2909, 3968, 3272, 300));
+    }
 
-	public String categorizeBox(int length, int width, int height, int mass) {
-		List<String> tags = new ArrayList<>();
-		if (length >= 10000 || width >= 10000 || height >= 10000 || (long) length * width * height >= 1000000000L) {
-			tags.add("Bulky");
-		}
-		if (mass >= 100) {
-			tags.add("Heavy");
-		}
-		if (tags.contains("Bulky") && tags.contains("Heavy")) {
-			return "Both";
-		}
-		if (tags.contains("Bulky") && !tags.contains("Heavy")) {
-			return "Bulky";
-		}
-		if (!tags.contains("Bulky") && tags.contains("Heavy")) {
-			return "Heavy";
-		}
-		return "Neither";
-	}
+    public String categorizeBox(int length, int width, int height, int mass) {
+        List<String> tags = new ArrayList<>();
+        if (length >= 10000 || width >= 10000 || height >= 10000 || (long) length * width * height >= 1000000000L) {
+            tags.add("Bulky");
+        }
+        if (mass >= 100) {
+            tags.add("Heavy");
+        }
+        if (tags.contains("Bulky") && tags.contains("Heavy")) {
+            return "Both";
+        }
+        if (tags.contains("Bulky") && !tags.contains("Heavy")) {
+            return "Bulky";
+        }
+        if (!tags.contains("Bulky") && tags.contains("Heavy")) {
+            return "Heavy";
+        }
+        return "Neither";
+    }
 }

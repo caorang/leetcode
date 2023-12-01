@@ -5,6 +5,10 @@ package cn.hutool.jackie.algorithm.heap;
  */
 public class MaxHeap {
 
+    public static void main(String[] args) {
+
+    }
+
     static class TreeNode<T> {
         T value;
         MinHeap.TreeNode left;
@@ -13,9 +17,5 @@ public class MaxHeap {
         TreeNode(T value) {
             this.value = value;
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }

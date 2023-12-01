@@ -23,46 +23,47 @@ package cn.hutool.jackie.algorithm.linkedlist;
  */
 public class SwapNodesInPairs {
 
-	public static class ListNode {
-		int val;
-		ListNode next;
+    public static void main(String[] args) {
+        SwapNodesInPairs solution = new SwapNodesInPairs();
+        System.out.println(solution.swapPairs(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))))));
+        System.out.println(
+                solution.swapPairs(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6))))))));
+    }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode next = head.next;
+        head.next = swapPairs(next.next);
+        next.next = head;
+        return next;
+    }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
+    public static class ListNode {
+        int val;
+        ListNode next;
 
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-			ListNode cur = this;
-			while (cur != null) {
-				sb.append(cur.val);
-				if (cur.next != null) {
-					sb.append(" → ");
-				}
-				cur = cur.next;
-			}
-			return sb.toString();
-		}
-	}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-	public static void main(String[] args) {
-		SwapNodesInPairs solution = new SwapNodesInPairs();
-		System.out.println(solution.swapPairs(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))))));
-		System.out.println(solution.swapPairs(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6))))))));
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
 
-	public ListNode swapPairs(ListNode head) {
-		if (head == null || head.next == null) {
-			return head;
-		}
-		ListNode next = head.next;
-		head.next = swapPairs(next.next);
-		next.next = head;
-		return next;
-	}
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            ListNode cur = this;
+            while (cur != null) {
+                sb.append(cur.val);
+                if (cur.next != null) {
+                    sb.append(" → ");
+                }
+                cur = cur.next;
+            }
+            return sb.toString();
+        }
+    }
 }

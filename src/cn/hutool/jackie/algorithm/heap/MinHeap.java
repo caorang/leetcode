@@ -8,22 +8,13 @@ import java.util.Map;
  */
 public class MinHeap<K extends Comparable, V> {
 
-    static class TreeNode<K, V> {
-        K key;
-        V value;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
     private Map<K, TreeNode> cache;
 
     public MinHeap() {
         cache = new HashMap<>();
+    }
+
+    public static void main(String[] args) {
     }
 
     public V pop() {
@@ -38,6 +29,15 @@ public class MinHeap<K extends Comparable, V> {
 
     }
 
-    public static void main(String[] args) {
+    static class TreeNode<K, V> {
+        K key;
+        V value;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 }

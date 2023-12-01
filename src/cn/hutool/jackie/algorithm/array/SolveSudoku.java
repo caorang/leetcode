@@ -10,6 +10,12 @@ import java.util.List;
  */
 public class SolveSudoku {
 
+    private boolean[][] line = new boolean[9][9];
+    private boolean[][] column = new boolean[9][9];
+    private boolean[][][] block = new boolean[3][3][9];
+    private boolean valid = false;
+    private List<int[]> spaces = new ArrayList<>();
+
     public static void main(String[] args) {
         char[][] board = {
                 {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
@@ -25,12 +31,6 @@ public class SolveSudoku {
         new SolveSudoku().solveSudoku(board);
         System.out.println(Arrays.deepToString(board));
     }
-
-    private boolean[][] line = new boolean[9][9];
-    private boolean[][] column = new boolean[9][9];
-    private boolean[][][] block = new boolean[3][3][9];
-    private boolean valid = false;
-    private List<int[]> spaces = new ArrayList<>();
 
     public void solveSudoku(char[][] board) {
         for (int i = 0; i < 9; ++i) {

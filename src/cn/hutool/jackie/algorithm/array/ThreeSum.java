@@ -36,78 +36,78 @@ import java.util.Set;
  * @See <a href="https://leetcode-cn.com/problems/3sum/">...</a>
  */
 public class ThreeSum {
-	public static void main(String[] args) {
-		int[] nums = {-1, 0, 1, 2, -1, -4};
-		System.out.println(new ThreeSum().threeSumWithTwoPointer(nums).toString());
-	}
+    public static void main(String[] args) {
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        System.out.println(new ThreeSum().threeSumWithTwoPointer(nums).toString());
+    }
 
-	public List<List<Integer>> threeSum(int[] nums) {
-		Set<String> sets = new HashSet<>();
-		List<List<Integer>> result = new ArrayList<>();
-		if (nums == null || nums.length < 3) {
-			return result;
-		}
-		Arrays.sort(nums);
-		for (int i = 0; i < nums.length - 2; i++) {
-			for (int j = i + 1; j < nums.length - 1; j++) {
-				for (int k = j + 1; k < nums.length; k++) {
-					if (nums[i] + nums[j] + nums[k] == 0) {
-						String hash = nums[i] + "," + nums[j] + "," + nums[k];
-						if (sets.contains(hash)) {
-							continue;
-						}
-						result.add(Arrays.asList(nums[i], nums[j], nums[k]));
-						sets.add(hash);
-					}
-				}
-			}
-		}
-		return result;
-	}
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<String> sets = new HashSet<>();
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length < 3) {
+            return result;
+        }
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            for (int j = i + 1; j < nums.length - 1; j++) {
+                for (int k = j + 1; k < nums.length; k++) {
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        String hash = nums[i] + "," + nums[j] + "," + nums[k];
+                        if (sets.contains(hash)) {
+                            continue;
+                        }
+                        result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                        sets.add(hash);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
-	public List<List<Integer>> threeSumWithTwoPointer(int[] nums) {
-		List<List<Integer>> result = new ArrayList<>();
-		if (nums == null || nums.length < 3) {
-			return result;
-		}
-		nums = bubbleSort(nums);
-		for (int i = 0; i < nums.length - 2; i++) {
-			if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
-				int left = i + 1;
-				int right = nums.length - 1;
-				while (left < right) {
-					int sum = nums[i] + nums[left] + nums[right];
-					if (sum == 0) {
-						result.add(Arrays.asList(nums[i], nums[left], nums[right]));
-						while (left < right && nums[left] == nums[left + 1]) {
-							left++;
-						}
-						while (left < right && nums[right] == nums[right - 1]) {
-							right--;
-						}
-						left++;
-						right--;
-					} else if (sum > 0) {
-						right--;
-					} else {
-						left++;
-					}
-				}
-			}
-		}
-		return result;
-	}
+    public List<List<Integer>> threeSumWithTwoPointer(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length < 3) {
+            return result;
+        }
+        nums = bubbleSort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+                int left = i + 1;
+                int right = nums.length - 1;
+                while (left < right) {
+                    int sum = nums[i] + nums[left] + nums[right];
+                    if (sum == 0) {
+                        result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                        while (left < right && nums[left] == nums[left + 1]) {
+                            left++;
+                        }
+                        while (left < right && nums[right] == nums[right - 1]) {
+                            right--;
+                        }
+                        left++;
+                        right--;
+                    } else if (sum > 0) {
+                        right--;
+                    } else {
+                        left++;
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
-	public int[] bubbleSort(int[] nums) {
-		for (int i = 0; i < nums.length - 1; i++) {
-			for (int j = 0; j < nums.length - i - 1; j++) {
-				if (nums[j] > nums[j + 1]) {
-					int temp = nums[j];
-					nums[j] = nums[j + 1];
-					nums[j + 1] = temp;
-				}
-			}
-		}
-		return nums;
-	}
+    public int[] bubbleSort(int[] nums) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = 0; j < nums.length - i - 1; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    int temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
+                }
+            }
+        }
+        return nums;
+    }
 }

@@ -1,5 +1,9 @@
 package cn.hutool.jackie.algorithm.plus;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -38,10 +42,33 @@ import java.util.List;
 public class MeetingScheduler {
 
     public static void main(String[] args) {
-
+        MeetingScheduler meetingScheduler = new MeetingScheduler();
+        int[][] slots1 = {{10, 50}, {60, 120}, {140, 210}};
+        int[][] slots2 = {{0, 15}, {60, 70}};
+        int duration = 8;
+        System.out.println(meetingScheduler.minAvailableDuration(slots1, slots2, duration));
     }
 
     public List<Integer> minAvailableDuration(int[][] slots1, int[][] slots2, int duration) {
-        return null;
+        if (slots1 == null || slots2 == null) {
+            return new ArrayList<>();
+        }
+        Arrays.sort(slots1, Comparator.comparingInt(k -> k[0]));
+        Arrays.sort(slots2, Comparator.comparingInt(k -> k[0]));
+        for (int i = 0, j = 0; i < slots1.length && j < slots2.length; ) {
+            int[] range1 = slots1[i];
+            int[] range2 = slots2[j];
+            int left = range1[0] >= range2[0] ? range1[0] : range2[0];
+            int right = range1[1] >= range2[1] ? range2[1] : range1[1];
+            if (right - left >= duration) {
+                return Arrays.asList(left, left + duration);
+            }
+            if (slots1[i][1] < slots2[j][1]) {
+                ++i;
+            } else {
+                ++j;
+            }
+        }
+        return Collections.emptyList();
     }
 }

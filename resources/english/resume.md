@@ -8,7 +8,12 @@
 ---
 
 ## Summary
-11 years experienced Java Developer specializing in high-concurrency architecture design, project management, and e-commerce solutions. Proven expertise in leading teams and delivering innovative solutions in the internet industry.
+Hello, my name is Cao Rang. I graduated with a master's degree in 2012 from Beijing Institute of Technology.</br>
+In 2013, I joined Shanghai Aerospace Information Co, where I was mainly responsible for the design and development of OA (Office Automation) and ERP systems. </br>
+In 2018, I moved to the E-commerce Technology Department of Xiaohongshu (Little Red Book) company. </br>
+From 2018 to 2020, I was responsible for the development of the fulfillment data center system. </br>
+In 2020, I transitioned to the Goods Department, taking on the role of overall technical leader for Xiaohongshu's Goods Center and Inventory Center. </br>
+I have 10+ years experienced Java Developer specializing in high-concurrency architecture design, project management, and e-commerce solutions. Proven expertise in leading teams and delivering innovative solutions in the internet industry.</br>
 
 ---
 

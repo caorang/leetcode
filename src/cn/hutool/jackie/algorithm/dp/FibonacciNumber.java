@@ -4,17 +4,8 @@ public class FibonacciNumber {
 
     public static void main(String[] args) {
         FibonacciNumber fibonacciNumber = new FibonacciNumber();
-        System.out.println(fibonacciNumber.fib(0));
-        System.out.println(fibonacciNumber.fib(1));
-        System.out.println(fibonacciNumber.fib(2));
-        System.out.println(fibonacciNumber.fib(3));
-        System.out.println(fibonacciNumber.fib(4));
-        System.out.println(fibonacciNumber.fib(5));
-        System.out.println(fibonacciNumber.fib(6));
-        System.out.println(fibonacciNumber.fib(7));
-        System.out.println(fibonacciNumber.fib(8));
-        System.out.println(fibonacciNumber.fib(9));
-        System.out.println(fibonacciNumber.fib(10));
+        System.out.println(fibonacciNumber.fib2(45));
+        System.out.println(fibonacciNumber.fib2(95));
     }
 
     public int fib(int n) {
@@ -28,5 +19,18 @@ public class FibonacciNumber {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
         return dp[n];
+    }
+
+    public int fib2(int n) {
+        if (n == 0) {
+            return 0;
+        }
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i < n; i++) {
+            dp[i] = (dp[i - 1] + dp[i - 2]) % 1000000007;
+        }
+        return dp[n - 1];
     }
 }

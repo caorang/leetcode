@@ -23,13 +23,15 @@ I have 10+ years experienced Java Developer specializing in high-concurrency arc
 **行吟信息科技（上海）有限公司, Shanghai, China**  
 *August 2022 - April 2023*
 
-Responsible for high-concurrency architecture design and leading a team to develop efficient product release platforms. Managed B/C-end product architecture and coordinated multiple resources for project implementation.
+Responsible for high-concurrency architecture design and leading a team to develop efficient product release platforms. </br>
+Managed B/C-end product architecture and coordinated multiple resources for project implementation.
 
 ### Product Comparison Platform Development Leader
 **上海航天信息科技有限公司, Shanghai, China**  
 *March 2021 - August 2022*
 
-Led the development of a real-time price comparison platform integrating internal and external products. Improved efficiency and accuracy of price comparison tasks and implemented near real-time data acquisition.
+Led the development of a real-time price comparison platform integrating internal and external products.</br>
+Improved efficiency and accuracy of price comparison tasks and implemented near real-time data acquisition.
 
 ---
 
@@ -78,6 +80,7 @@ Led the development of a real-time price comparison platform integrating interna
 - **Technologies:** Flink, Spark
 - **Project Management:** Agile, Scrum
 - **Languages:** English (Fluent), Mandarin (Native)
+- **Leadership:** Team Management & Leadership Skills
 
 ---
 

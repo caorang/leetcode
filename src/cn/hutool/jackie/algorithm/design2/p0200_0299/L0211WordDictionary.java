@@ -1,5 +1,8 @@
 package cn.hutool.jackie.algorithm.design2.p0200_0299;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * 请你设计一个数据结构，支持 添加新单词 和 查找字符串是否与任何先前添加的字符串匹配 。
  * <p>
@@ -40,16 +43,97 @@ package cn.hutool.jackie.algorithm.design2.p0200_0299;
  */
 public class L0211WordDictionary {
 
-    public L0211WordDictionary() {
+    public static class Trie {
 
+        public Node root;
+
+        private class Node {
+            public String word;
+            public boolean isWord;
+
+            public Map<Character, Node> next;
+
+            private Node(String word, boolean isWord) {
+                this.word = word;
+                this.isWord = isWord;
+                this.next = new TreeMap<>();
+            }
+        }
+
+        public Trie() {
+            this.root = new Node("", false);
+        }
+
+        public void insert(String sentence) {
+            if (sentence == null || sentence.length() == 0) {
+                return;
+            }
+            Node node = this.root;
+            StringBuilder prefix = new StringBuilder();
+            for (int i = 0; i < sentence.length(); i++) {
+                Character c = sentence.charAt(i);
+                prefix.append(c);
+                Map<Character, Node> next = node.next;
+                if (next.containsKey(c)) {
+                    node = next.get(c);
+                } else {
+                    boolean isWord = i >= sentence.length() - 1 ? true : false;
+                    Node newNode = new Node(prefix.toString(), isWord);
+                    next.put(c, newNode);
+                    node = newNode;
+                }
+            }
+        }
+
+        public boolean search(Node root, String sentence, StringBuilder prefix) {
+            if (sentence == null || sentence.length() == 0) {
+                return false;
+            }
+            Node node = root;
+            for (int i = 0; i < sentence.length(); i++) {
+                Character c = sentence.charAt(i);
+                Map<Character, Node> next = node.next;
+                if (next.containsKey(c)) {
+                    prefix.append(c);
+                    node = next.get(c);
+                    if (node.isWord == true && node.word.equals(prefix.toString())) {
+                        return true;
+                    }
+                } else if (c == '.') {
+                    if (next == null || next.size() == 0) {
+                        return false;
+                    }
+                    for (Map.Entry<Character, Node> entry : next.entrySet()) {
+                        Node searchNode = entry.getValue();
+                        prefix.append(entry.getKey());
+                        if (searchNode.isWord == true && searchNode.word.equals(prefix.toString())) {
+                            return true;
+                        }
+                        String searchSentence = sentence.substring(1, sentence.length());
+                        if (search(searchNode, searchSentence, prefix)) {
+                            return true;
+                        }
+                    }
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        }
+    }
+
+    private Trie dictionary;
+
+    public L0211WordDictionary() {
+        this.dictionary = new Trie();
     }
 
     public void addWord(String word) {
-
+        this.dictionary.insert(word);
     }
 
     public boolean search(String word) {
-        return false;
+        return this.dictionary.search(this.dictionary.root, word, new StringBuilder());
     }
 
     public static void main(String[] args) {
@@ -65,5 +149,15 @@ public class L0211WordDictionary {
         System.out.println(wordDictionary.search(".ad"));
         // 返回 True
         System.out.println(wordDictionary.search("b.."));
+        // 返回 True
+        System.out.println(wordDictionary.search("..."));
+        // 返回 True
+        System.out.println(wordDictionary.search("b.d"));
+        // 返回 True
+        System.out.println(wordDictionary.search("..d"));
+        // 返回 True
+        System.out.println(wordDictionary.search(".ad"));
+        // 返回 False
+        System.out.println(wordDictionary.search(".am"));
     }
 }

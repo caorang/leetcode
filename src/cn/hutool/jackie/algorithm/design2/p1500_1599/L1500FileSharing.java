@@ -1,5 +1,17 @@
 package cn.hutool.jackie.algorithm.design2.p1500_1599;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
 /**
  * 我们需要使用一套文件分享系统来分享一个非常大的文件，该文件由 m 个从 1 到 m 编号的文件块组成。
  * <p>
@@ -62,58 +74,66 @@ package cn.hutool.jackie.algorithm.design2.p1500_1599;
  * 当系统以用户的 IP 地址而不是独有 ID 来识别用户，且用户断开连接后以相同 IP 重新连接系统时，会发生什么？
  * 当用户频繁加入并退出系统，且该用户不请求任何文件块时，你的解决方案仍然保持高效吗？
  * 当所有用户同时加入系统，请求所有文件并离开时，你的解决方案仍然保持高效吗？
- * 如果系统用于分享 n 个文件，其中第  i 个文件由 m[i] 组成，你需要如何修改？
+ * 如果系统用于分享n个文件，其中第i个文件由 m[i] 组成，你需要如何修改？
  *
  * @author rcao1
  */
 public class L1500FileSharing {
 
+    private int chunks;
+    private AtomicInteger cur;
+    private ConcurrentSkipListSet<Integer> reused;
+    private ConcurrentSkipListMap<Integer, Set<Integer>> userChunks;
+
     public L1500FileSharing(int m) {
-
+        cur = new AtomicInteger(0);
+        chunks = m;
+        reused = new ConcurrentSkipListSet<>();
+        userChunks = new ConcurrentSkipListMap<>();
     }
 
-    /**
-     * 一个新用户加入系统，并拥有文件的一些文件块。
-     * 系统应当为该用户注册一个 ID，该 ID 应是未被其他用户占用的最小正整数。返回注册的 ID。
-     *
-     * @param ownedChunks
-     * @return
-     */
-    public int join(int[] ownedChunks) {
-        return 0;
+    public int join(List<Integer> ownedChunks) {
+        int userID;
+        if (reused.isEmpty()) {
+            userID = cur.addAndGet(1);
+        } else {
+            userID = reused.pollFirst();
+        }
+        userChunks.put(userID, new HashSet<>(ownedChunks));
+        return userID;
     }
 
-    /**
-     * ID 为 userID 的用户将离开系统，你不能再从该用户提取文件块了。
-     *
-     * @param userID
-     */
     public void leave(int userID) {
-
+        reused.add(userID);
+        userChunks.remove(userID);
     }
 
-    /**
-     * ID 为 userID 的用户请求编号为 chunkID 的文件块。
-     * 返回拥有这个文件块的所有用户的 ID 所构成的列表或数组，按升序排列。
-     *
-     * @param userID
-     * @param chunkID
-     * @return
-     */
-    public int[] request(int userID, int chunkID) {
-        return null;
+    public List<Integer> request(int userID, int chunkID) {
+        if (chunkID < 1 || chunkID > chunks) {
+            return Collections.emptyList();
+        }
+        List<Integer> res = new ArrayList<>();
+        for (Map.Entry<Integer, Set<Integer>> entry : userChunks.entrySet()) {
+            if (entry.getValue().contains(chunkID)) {
+                res.add(entry.getKey());
+            }
+        }
+        if (!res.isEmpty()) {
+            userChunks.computeIfAbsent(userID, k -> new HashSet<>()).add(chunkID);
+        }
+        return res;
     }
 
     public static void main(String[] args) {
         L1500FileSharing fileSharing = new L1500FileSharing(4); // 我们用该系统分享由 4 个文件块组成的文件。
-        fileSharing.join(new int[] {1, 2});    // 一个拥有文件块 [1,2] 的用户加入系统，为其注册 id = 1 并返回 1。
-        fileSharing.join(new int[] {2, 3});    // 一个拥有文件块 [2,3] 的用户加入系统，为其注册 id = 2 并返回 2。
-        fileSharing.join(new int[] {4});       // 一个拥有文件块 [4] 的用户加入系统，为其注册 id = 3 并返回 3。
-        fileSharing.request(1, 3);   // id = 1 的用户请求第 3 个文件块，只有 id = 2 的用户拥有文件块，返回 [2] 。注意，现在用户 1 现拥有文件块 [1,2,3]。
-        fileSharing.request(2, 2);   // id = 2 的用户请求第 2 个文件块，id 为 [1,2] 的用户拥有该文件块，所以我们返回 [1,2] 。
+        System.out.println(fileSharing.join(Arrays.stream(new int[] {1, 2}).boxed().collect(Collectors.toList())));    // 一个拥有文件块 [1,2] 的用户加入系统，为其注册 id = 1 并返回 1。
+        System.out.println(fileSharing.join(Arrays.stream(new int[] {2, 3}).boxed().collect(Collectors.toList())));    // 一个拥有文件块 [2,3] 的用户加入系统，为其注册 id = 2 并返回 2。
+        System.out.println(fileSharing.join(Arrays.stream(new int[] {4}).boxed().collect(Collectors.toList())));       // 一个拥有文件块 [4] 的用户加入系统，为其注册 id = 3 并返回 3。
+        System.out.println(fileSharing.request(1, 3));   // id = 1 的用户请求第 3 个文件块，只有 id = 2 的用户拥有文件块，返回 [2] 。注意，现在用户 1 现拥有文件块 [1,2,3]。
+        System.out.println(fileSharing.request(2, 2));   // id = 2 的用户请求第 2 个文件块，id 为 [1,2] 的用户拥有该文件块，所以我们返回 [1,2] 。
         fileSharing.leave(1);        // id = 1 的用户离开系统，其所拥有的所有文件块不再对其他用户可用。
-        fileSharing.request(2, 1);   // id = 2 的用户请求第 1 个文件块，系统中没有用户拥有该文件块，所以我们返回空列表 [] 。
+        System.out.println(fileSharing.request(2, 1));   // id = 2 的用户请求第 1 个文件块，系统中没有用户拥有该文件块，所以我们返回空列表 [] 。
         fileSharing.leave(2);        // id = 2 的用户离开系统。
-        fileSharing.join(new int[] {});        // 一个不拥有任何文件块的用户加入系统，为其注册 id = 1 并返回 1 。注意，id 1 和 2 空闲，可以重新使用。
+        System.out.println(fileSharing.join(Arrays.stream(new int[] {}).boxed().collect(Collectors.toList())));        // 一个不拥有任何文件块的用户加入系统，为其注册 id = 1 并返回 1 。注意，id 1 和 2 空闲，可以重新使用。
     }
 }

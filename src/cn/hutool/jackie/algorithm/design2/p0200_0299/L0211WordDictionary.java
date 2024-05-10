@@ -96,7 +96,7 @@ public class L0211WordDictionary {
                 if (next.containsKey(c)) {
                     prefix.append(c);
                     node = next.get(c);
-                    if (node.isWord == true && node.word.equals(prefix.toString())) {
+                    if (node.isWord == true && i == sentence.length() - 1 && node.word.equals(prefix.toString())) {
                         return true;
                     }
                 } else if (c == '.') {
@@ -106,13 +106,14 @@ public class L0211WordDictionary {
                     for (Map.Entry<Character, Node> entry : next.entrySet()) {
                         Node searchNode = entry.getValue();
                         prefix.append(entry.getKey());
-                        if (searchNode.isWord == true && searchNode.word.equals(prefix.toString())) {
+                        if (searchNode.isWord == true && i == sentence.length() - 1 && searchNode.word.equals(prefix.toString())) {
                             return true;
                         }
-                        String searchSentence = sentence.substring(1, sentence.length());
+                        String searchSentence = sentence.substring(i + 1, sentence.length());
                         if (search(searchNode, searchSentence, prefix)) {
                             return true;
                         }
+                        prefix.deleteCharAt(prefix.length() - 1);
                     }
                 } else {
                     return false;
@@ -138,26 +139,13 @@ public class L0211WordDictionary {
 
     public static void main(String[] args) {
         L0211WordDictionary wordDictionary = new L0211WordDictionary();
-        wordDictionary.addWord("bad");
-        wordDictionary.addWord("dad");
-        wordDictionary.addWord("mad");
-        // 返回 False
-        System.out.println(wordDictionary.search("pad"));
-        // 返回 True
-        System.out.println(wordDictionary.search("bad"));
-        // 返回 True
-        System.out.println(wordDictionary.search(".ad"));
-        // 返回 True
-        System.out.println(wordDictionary.search("b.."));
-        // 返回 True
-        System.out.println(wordDictionary.search("..."));
-        // 返回 True
-        System.out.println(wordDictionary.search("b.d"));
-        // 返回 True
-        System.out.println(wordDictionary.search("..d"));
-        // 返回 True
-        System.out.println(wordDictionary.search(".ad"));
-        // 返回 False
-        System.out.println(wordDictionary.search(".am"));
+        wordDictionary.addWord("at");
+        wordDictionary.addWord("and");
+        wordDictionary.addWord("an");
+        wordDictionary.addWord("add");
+        //System.out.println(wordDictionary.search("a"));
+        //System.out.println(wordDictionary.search(".at"));
+        wordDictionary.addWord("bat");
+        System.out.println(wordDictionary.search(".at"));
     }
 }

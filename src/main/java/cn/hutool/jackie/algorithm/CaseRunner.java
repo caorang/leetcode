@@ -37,6 +37,7 @@ public class CaseRunner {
                 if (i == 0) {
                     Constructor constructor = getConstructor(clazz, methodName);
                     instance = constructor.newInstance(buildArgs(args, constructor.getParameterTypes()));
+                    System.out.println(null + "");
                 } else {
                     Method method = getMethod(clazz, methodName);
                     Object rsp = method.invoke(instance, buildArgs(args, method.getParameterTypes()));

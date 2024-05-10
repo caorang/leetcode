@@ -40,7 +40,7 @@ public class CaseRunner {
                 } else {
                     Method method = getMethod(clazz, methodName);
                     Object rsp = method.invoke(instance, buildArgs(args, method.getParameterTypes()));
-                    System.out.println(rsp.toString());
+                    System.out.println(rsp + "");
                 }
             }
         } catch (Exception ex) {

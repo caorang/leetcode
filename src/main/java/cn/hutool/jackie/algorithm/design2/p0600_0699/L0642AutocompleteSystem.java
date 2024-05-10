@@ -102,38 +102,43 @@ public class L0642AutocompleteSystem {
                 } else {
                     int count = 0;
                     boolean isWord = false;
-                    if (i == sentence.length() - 1) {
-                        isWord = true;
-                        count = time;
-                    }
+
                     Node newNode = new Node(isWord, count);
                     newNode.word = prefix.toString();
                     next.put(c, newNode);
                     node = newNode;
                 }
+                if (i == sentence.length() - 1) {
+                    node.isWord = true;
+                    node.times += time;
+                }
             }
         }
 
-        public Map<String, Integer> search(String prefix) {
+        public Map<String, Integer> search(Node node, String prefix) {
             Map<String, Integer> result = new HashMap<>(8);
             if (prefix == null || prefix.length() == 0) {
                 return result;
             }
-            Node node = this.root;
             for (int i = 0; i < prefix.length(); i++) {
                 Character c = prefix.charAt(i);
                 TreeMap<Character, Node> next = node.next;
                 if (next.containsKey(c)) {
                     node = next.get(c);
-                    if (node.isWord == true) {
+                    if (node.isWord == true && i == prefix.length() - 1) {
                         result.put(node.word, node.times);
+                    }
+                    if (prefix.startsWith((node.word))) {
+                        String toFind = prefix.substring(i + 1, prefix.length());
+                        if (toFind == null || toFind.length() == 0) {
+                            result.putAll(getNodeWords(node));
+                        } else {
+                            result.putAll(search(node, toFind));
+                        }
                     }
                 } else {
                     return new HashMap<>(8);
                 }
-            }
-            if (node != null && node.isWord != true) {
-                return getNodeWords(node);
             }
             return result;
         }
@@ -178,6 +183,7 @@ public class L0642AutocompleteSystem {
      */
     public List<String> input(char c) {
         if (c == CHAR_END) {
+            this.dictionary.insert(this.buffer.toString(), 1);
             this.buffer = new StringBuilder();
             return new ArrayList<>();
         }
@@ -186,7 +192,7 @@ public class L0642AutocompleteSystem {
     }
 
     private List<String> searchWords() {
-        Map<String, Integer> words = this.dictionary.search(this.buffer.toString());
+        Map<String, Integer> words = this.dictionary.search(this.dictionary.root, this.buffer.toString());
         // 按照次数从大到小取3个，如果数量一致，则按照ASCII码排序
         List<Map.Entry<String, Integer>> list = new LinkedList<>(words.entrySet());
         // 使用Comparator对list进行排序
@@ -204,8 +210,8 @@ public class L0642AutocompleteSystem {
     }
 
     public static void main(String[] args) {
-        String method = "[\"L0642AutocompleteSystem\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\"]";
-        String arguments = "[[[\"i love you\",\"island\",\"iroman\",\"i love leetcode\"],[5,3,2,2]],[\"i\"],[\" \"],[\"a\"],[\"#\"],[\"i\"],[\" \"],[\"a\"],[\"#\"],[\"i\"],[\" \"],[\"a\"],[\"#\"]]";
+        String method = "[\"AutocompleteSystem\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\",\"input\"]";
+        String arguments = "[[[\"abc\",\"abbc\",\"a\"],[3,3,3]],[\"b\"],[\"c\"],[\"#\"],[\"b\"],[\"c\"],[\"#\"],[\"a\"],[\"b\"],[\"c\"],[\"#\"],[\"a\"],[\"b\"],[\"c\"],[\"#\"]]";
         CaseRunner runner = new CaseRunner(method, arguments);
         runner.run(L0642AutocompleteSystem.class);
     }

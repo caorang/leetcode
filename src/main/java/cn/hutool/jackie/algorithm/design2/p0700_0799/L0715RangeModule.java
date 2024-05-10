@@ -40,11 +40,11 @@ import java.util.TreeMap;
  *
  * @author rcao1
  */
-public class L715RangeModule {
+public class L0715RangeModule {
 
     private TreeMap<Integer, Integer> tm;
 
-    public L715RangeModule() {
+    public L0715RangeModule() {
         this.tm = new TreeMap<>();
     }
 
@@ -134,7 +134,7 @@ public class L715RangeModule {
     private static void case2() {
         //["RangeModule","addRange","removeRange","removeRange","addRange","removeRange","addRange","queryRange","queryRange","queryRange"]
         //[[],[6,8],[7,8],[8,9],[8,9],[1,3],[1,8],[2,4],[2,9],[4,6]]
-        L715RangeModule rangeModule = new L715RangeModule();
+        L0715RangeModule rangeModule = new L0715RangeModule();
         rangeModule.addRange(6, 8);
         rangeModule.removeRange(7, 8);
         rangeModule.removeRange(8, 9);
@@ -147,7 +147,7 @@ public class L715RangeModule {
     }
 
     private static void case1() {
-        L715RangeModule rangeModule = new L715RangeModule();
+        L0715RangeModule rangeModule = new L0715RangeModule();
         rangeModule.addRange(10, 20);
         rangeModule.removeRange(14, 16);
         //返回 true （区间 [10, 14) 中的每个数都正在被跟踪）

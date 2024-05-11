@@ -195,9 +195,10 @@ public class L1912MovieRentingSystem {
     }
 
     public static void main(String[] args) {
-        String method = "[\"MovieRentingSystem\",\"search\",\"search\",\"rent\",\"search\",\"search\",\"report\",\"search\",\"drop\"]";
-        String arguments = "[[10,[[0,418,3],[9,5144,46],[2,8986,29],[6,1446,28],[3,8215,97],[7,9105,34],[6,9105,30],[5,1722,94],[9,528,40],[3,850,77],[3,7069,40],[8,1997,42],[0,8215,28],[7,4050,80],[4,7100,97],[4,9686,32],[4,2566,93],[2,8320,12],[2,5495,56]]],[7837],[5495],[4,7100],[9105],[1446],[],[9869],[4,7100]]";
+        String method = "[\"MovieRentingSystem\", \"search\", \"rent\", \"rent\", \"report\", \"drop\", \"search\"]";
+        String arguments = "[[3, [[0, 1, 5], [0, 2, 6], [0, 3, 7], [1, 1, 4], [1, 2, 7], [2, 1, 5]]], [1], [0, 1], [1, 2], [], [1, 2], [2]]";
         CaseRunner runner = new CaseRunner(method, arguments);
+        // 输出：[null, [1, 0, 2], null, null, [[0, 1], [1, 2]], null, [0, 1]]
         runner.run(L1912MovieRentingSystem.class);
     }
 }

@@ -65,6 +65,8 @@ public class L0146LRUCache<K, V> {
     public void put(K key, V value) {
         int size = map.size();
         if (map.containsKey(key)) {
+            LinkedNode node = map.get(key);
+            node.value = value;
             moveToHead(map.get(key));
         } else {
             if (size >= capacity) {

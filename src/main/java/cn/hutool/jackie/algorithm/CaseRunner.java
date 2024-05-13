@@ -2,6 +2,7 @@ package cn.hutool.jackie.algorithm;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
@@ -41,7 +42,11 @@ public class CaseRunner {
                 } else {
                     Method method = getMethod(clazz, methodName);
                     Object rsp = method.invoke(instance, buildArgs(args, method.getParameterTypes()));
-                    System.out.println(rsp + "");
+                    if (rsp instanceof int[]) {
+                        System.out.println(Arrays.toString((int[]) rsp) + "");
+                    } else {
+                        System.out.println(rsp + "");
+                    }
                 }
             }
         } catch (Exception ex) {

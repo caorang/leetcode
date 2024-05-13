@@ -32,23 +32,25 @@ public class CaseRunner {
     public void run(Class clazz) {
         try {
             Object instance = null;
+            JSONArray result = new JSONArray();
             for (int i = 0; i < methodList.size(); i++) {
                 String methodName = methodList.get(i);
                 JSONArray args = argsObject.get(i);
                 if (i == 0) {
                     Constructor constructor = getConstructor(clazz, methodName);
                     instance = constructor.newInstance(buildArgs(args, constructor.getParameterTypes()));
-                    System.out.println(null + "");
+                    result.add(null);
                 } else {
                     Method method = getMethod(clazz, methodName);
                     Object rsp = method.invoke(instance, buildArgs(args, method.getParameterTypes()));
                     if (rsp instanceof int[]) {
-                        System.out.println(Arrays.toString((int[]) rsp) + "");
+                        result.add(Arrays.toString((int[]) rsp));
                     } else {
-                        System.out.println(rsp + "");
+                        result.add(rsp);
                     }
                 }
             }
+            System.out.println(result);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

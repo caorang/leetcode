@@ -63,8 +63,8 @@ public class CQueue {
          *  [[], [1], [2], []]
          *  输出：[null,null,null,1]
          */
-        String method = "[\"CQueue\",\"appendTail\",\"deleteHead\",\"deleteHead\",\"deleteHead\"]\n";
-        String arguments = "[[],[3],[],[],[]]\n";
+        String method = "[\"CQueue\",\"appendTail\",\"appendTail\",\"deleteHead\",\"deleteHead\",\"deleteHead\"]\n";
+        String arguments = "[[],[3],[4],[],[],[]]\n";
         CaseRunner runner = new CaseRunner(method, arguments);
         runner.run(CQueue.class);
     }

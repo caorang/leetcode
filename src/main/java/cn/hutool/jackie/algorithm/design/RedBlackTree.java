@@ -4,28 +4,24 @@ enum Color {
     RED, BLACK
 }
 
-class Node<T extends Comparable<T>, V> {
-    T key;
-    V value;
-    Color color;
-    Node<T, V> left, right, parent;
-
-    Node(T key, V value) {
-        this.key = key;
-        this.value = value;
-        color = Color.RED;
-        left = right = parent = null;
-    }
-}
-
 /**
  * @author rcao1
  */
 public class RedBlackTree<T extends Comparable<T>, V> {
     private Node<T, V> root;
+    private int size;
 
-    RedBlackTree() {
-        root = null;
+    public RedBlackTree() {
+        this.root = null;
+        this.size = 0;
+    }
+
+    public Node<T, V> getRoot() {
+        return this.root;
+    }
+
+    public int size() {
+        return this.size;
     }
 
     private void leftRotate(Node<T, V> x) {
@@ -126,6 +122,7 @@ public class RedBlackTree<T extends Comparable<T>, V> {
         }
 
         fixInsert(node);
+        this.size++;
     }
 
     private Node<T, V> search(Node<T, V> node, T key) {

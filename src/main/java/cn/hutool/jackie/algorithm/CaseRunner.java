@@ -38,10 +38,12 @@ public class CaseRunner {
                 JSONArray args = argsObject.get(i);
                 if (i == 0) {
                     Constructor constructor = getConstructor(clazz, methodName);
+                    constructor.setAccessible(true);
                     instance = constructor.newInstance(buildArgs(args, constructor.getParameterTypes()));
                     result.add(null);
                 } else {
                     Method method = getMethod(clazz, methodName);
+                    method.setAccessible(true);
                     Object rsp = method.invoke(instance, buildArgs(args, method.getParameterTypes()));
                     if (rsp instanceof int[]) {
                         result.add(Arrays.toString((int[]) rsp));
